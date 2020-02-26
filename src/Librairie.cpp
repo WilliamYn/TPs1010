@@ -8,6 +8,12 @@ Librairie::Librairie(const Librairie& librairie)
     for(int i=0; i<librairie.medias_.size(); i++){
         medias_.push_back(std::move(librairie.medias_[i])); //j'ai mis move mais jsp
     }
+    /*Revoir. Selon Jango: 
+    *this = librairie;
+    Selon PDF:
+    La méthode doit être modifiée pour prendre en considération le polymorphisme.
+    La méthode utilise la méthode clone() de la classe Media.
+    */
 }
 
 // To do
@@ -78,13 +84,24 @@ void Librairie::retirerEpisode(const std::string& nomSerie, unsigned int numSais
 
 //! Méthode qui charge les series à partir d'un fichier.
 //! \param nomFichier           Le nom du fichier à lire.
-//! \param gestionnaireAuteurs  Le gestionnaire des auteurs. Nécessaire pour associer un serie à un
+//! \param gestionnaireAuteurs  Le gestionnaire des auteurs. Nécessaire pour associer une serie à un
 //! auteur.
 //! \return                     Un bool représentant si le chargement a été un succès.
 bool Librairie::chargerMediasDepuisFichier(const std::string& nomFichier,
                                            GestionnaireAuteurs& gestionnaireAuteurs)
 {
     // To do
+    std::ifstream fichier(nomFichier);
+    if(fichier){
+        std::string ligne;
+        while(getline(fichier, ligne)){
+            if(!lireLigneMedia(ligne, gestionnaireAuteurs)){
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
 }
 
 //! Méthode qui charge les restrictions des series à partir d'un fichier.
@@ -169,6 +186,7 @@ Media* Librairie::chercherMedia(const std::string& nomMedia, Media::TypeMedia ty
 bool Librairie::lireLigneRestrictions(const std::string& ligne)
 {
     // To do
+    
 }
 
 // To do
@@ -216,6 +234,23 @@ bool Librairie::lireLigneSerie(std::istream& is, GestionnaireAuteurs& gestionnai
 bool Librairie::lireLigneFilm(std::istream& is, GestionnaireAuteurs& gestionnaireAuteurs)
 {
     // To do
+
+    std::string nomAuteur, duree;
+    Auteur* auteur;
+
+    if(!(is >> nomAuteur)){
+        return false;
+    }
+    auteur = gestionnaireAuteurs.chercherAuteur(nomAuteur);
+    Film film(auteur);
+    if(!(is>>film>>duree)){
+        return false;
+    }
+    *this += std::make_unique<Film>(film);
+
+    //on n'a pas utilisé set et getNbMedias de la classe Auteur
+    //UNFINISHED FUNCTION: il faut set lire la duree et le mettre dans le film
+    
 }
 
 // To do
