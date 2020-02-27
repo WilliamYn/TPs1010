@@ -5,15 +5,7 @@
 Librairie::Librairie(const Librairie& librairie)
 {
     // To do
-    for(int i=0; i<librairie.medias_.size(); i++){
-        medias_.push_back(std::move(librairie.medias_[i])); //j'ai mis move mais jsp
-    }
-    /*Revoir. Selon Jango: 
     *this = librairie;
-    Selon PDF:
-    La méthode doit être modifiée pour prendre en considération le polymorphisme.
-    La méthode utilise la méthode clone() de la classe Media.
-    */
 }
 
 // To do
@@ -70,7 +62,7 @@ void Librairie::ajouterEpisode(const std::string& nomSerie, unsigned int numSais
                                std::unique_ptr<Episode> episode)
 {
     // To do
-    *(chercherSerie(nomSerie)->getSaison) += episode;
+    *(chercherSerie(nomSerie)->getSaison(numSaison)) += std::move(episode);
     
 }
 
@@ -79,7 +71,7 @@ void Librairie::retirerEpisode(const std::string& nomSerie, unsigned int numSais
                                unsigned int numEpisode)
 {
     // To do
-    *(chercherSerie(nomSerie)->getSaison) -= numEpisode;
+    *(chercherSerie(nomSerie)->getSaison(numSaison)) -= numEpisode;
 }
 
 //! Méthode qui charge les series à partir d'un fichier.
@@ -138,6 +130,11 @@ size_t Librairie::getNbMedias() const
 std::ostream& operator<<(std::ostream& os, const Librairie& librairie)
 {
     // To do
+    for (int i = 0; i < librairie.medias_.size(); i++)
+    {
+    librairie.medias_[i]->afficher(os) << std::endl;
+    }
+    return os;
 }
 
 // To do
@@ -145,7 +142,7 @@ size_t Librairie::trouverIndexMedia(const std::string& nomMedia) const
 {
     // To do
     for(int i=0; i<medias_.size(); i++){
-        if(medias_[i]->getNom == nomMedia){
+        if(medias_[i]->getNom() == nomMedia){
             return i;
         }
     }
@@ -167,7 +164,6 @@ Librairie& Librairie::operator-=(const std::string& nomMedia)
     if(indexMedia != MEDIA_INEXSISTANT){
         medias_.erase(medias_.begin() + indexMedia);
     }
-    
 }
 
 // To do
@@ -216,20 +212,50 @@ const std::vector<std::unique_ptr<Media>>& Librairie::getMedias() const
 bool Librairie::lireLigneEpisode(std::istream& is, GestionnaireAuteurs&)
 {
     // To do
+    Episode episode;
+    std::string nomSerie;
+    int numSaison;
+    if (!(is >> episode >> nomSerie >> numSaison))
+    {
+        return false;
+    }
+
+    ajouterEpisode(nomSerie, numSaison, std::make_unique<Episode>(episode));
+    return true;
+
 }
 
 // To do
 bool Librairie::lireLigneSaison(std::istream& is, GestionnaireAuteurs&)
 {
     // To do
+    Saison saison;
+    std::string nomSerie;
+    if (!(is >> saison >> nomSerie))
+    {
+        return false;
+    }
+    ajouterSaison(nomSerie, std::make_unique<Saison>(saison));
+    return true;
 }
 
 // To do
 bool Librairie::lireLigneSerie(std::istream& is, GestionnaireAuteurs& gestionnaireAuteurs)
 {
     // To do
-    Serie serie;
-
+    std::string nomAuteur;
+    if (!(is >> nomAuteur))
+    {
+        return false;
+    }
+    Auteur* auteur = gestionnaireAuteurs.chercherAuteur(nomAuteur);
+    Serie serie(auteur);
+    if (!(is >> serie))
+    {
+        return false;
+    }
+    *this += std::make_unique<Serie>(serie);
+    return true;
 }
 
 // To do
@@ -244,10 +270,11 @@ bool Librairie::lireLigneFilm(std::istream& is, GestionnaireAuteurs& gestionnair
     }
     Auteur* auteur = gestionnaireAuteurs.chercherAuteur(nomAuteur);
     Film film(auteur);
-    if(!(is>>film>>duree)){
+    if(!(film.lire(is))){
         return false;
     }
     *this += std::make_unique<Film>(film);
+    return true;
 
     //on n'a pas utilisé set et getNbMedias de la classe Auteur
     //UNFINISHED FUNCTION: il faut set lire la duree et le mettre dans le film
@@ -260,7 +287,7 @@ bool Librairie::lireLigneFilm(std::istream& is, GestionnaireAuteurs& gestionnair
 size_t Librairie::getNbFilms() const
 {
     // To do
-    uint nbFilms = 0;
+    int nbFilms = 0;
     for(int i=0; i<medias_.size(); i++){
         if(medias_[i]->getTypeMedia() == Media::TypeMedia::Film){
             nbFilms++;
@@ -272,7 +299,7 @@ size_t Librairie::getNbFilms() const
 size_t Librairie::getNbSeries() const
 {
     // To do
-    uint nbSeries = 0;
+    int nbSeries = 0;
     for(int i=0; i<medias_.size(); i++){
         if(medias_[i]->getTypeMedia() == Media::TypeMedia::Serie){
             nbSeries++;

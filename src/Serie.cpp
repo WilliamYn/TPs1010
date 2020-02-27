@@ -37,7 +37,8 @@ std::ostream& Serie::afficher(std::ostream& os) const
 {
     // To do
     Media::afficher(os);
-    GestionnaireSaisons::afficher(os); //pas suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur. Car classe abstraite????????????????????
+    //GestionnaireSaisons::afficher(os); //pas suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur. Car classe abstraite????????????????????
+    //Il ne faut pas appeler afficher de GestionnaireSaison car celui ci est =0
 }
 
 // To do

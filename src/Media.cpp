@@ -42,7 +42,8 @@ namespace
 // To do
 Media::Media(Auteur* auteur, Media::TypeMedia typeMedia)
     : auteur_(auteur)
-    , typeMedia_(typeMedia)
+    , typeMedia_(typeMedia)//iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+
 // To do
 {
 }
@@ -176,10 +177,10 @@ Media::TypeMedia Media::getTypeMedia() const
 std::istream& Media::lire(std::istream& is)
 {
     // To do
-    int valeurNumeriqueTypeMedia, valeurNumeriqueGenre, valeurNumeriquePays;
-    is >> valeurNumeriqueTypeMedia >> *auteur_ >> nom_ >> anneeDeSortie_ >> valeurNumeriqueGenre >>
+    //On a enlevé type et auteur
+    int valeurNumeriqueGenre, valeurNumeriquePays;
+    is >> std::quoted(nom_) >> anneeDeSortie_ >> valeurNumeriqueGenre >>
         valeurNumeriquePays >> estRestreintParAge_;
-    typeMedia_ = static_cast<TypeMedia>(valeurNumeriqueTypeMedia);
     genre_ = static_cast<Genre>(valeurNumeriqueGenre);
     pays_ = static_cast<Pays>(valeurNumeriquePays);
     return is;

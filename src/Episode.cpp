@@ -38,7 +38,8 @@ std::ostream& operator<<(std::ostream& os, const Episode& episode)
 std::istream& operator>>(std::istream& is, Episode& episode)
 {
     // To do
-    is >> episode.nom_ >> episode.duree_ >> episode.numEpisode_;
+    is >> episode.numEpisode_ >> std::quoted(episode.nom_) >> std::quoted(episode.duree_);
+    return is;
 }
 
 // To do
@@ -47,15 +48,3 @@ unsigned int Episode::getNumEpisode() const
     // To do
     return numEpisode_;
 }
-
-std::string Episode::getNom() const
-{
-    return nom_;
-}
-//done
-
-std::string Episode::getDuree() const
-{
-    return duree_;
-}
-//done

@@ -30,8 +30,7 @@ std::ostream& Film::afficher(std::ostream& os) const
 // To do
 std::istream& Film::lire(std::istream& is)
 { // To do
-    Media media(nullptr, TypeMedia::Film);
-    is >> media;
+    is >> *this >> std::quoted(duree_);
     return is;
 }
 

@@ -74,4 +74,5 @@ std::istream& operator>>(std::istream& is, Auteur& auteur)
 {
     // To do
     is >> auteur.nom_ >> auteur.anneeDeNaissance_; //Il n'y a pas d'attribut nbMedias_ dans le fichier textttttttttttttttttttttt?
+    return is;
 }

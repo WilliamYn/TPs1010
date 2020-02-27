@@ -94,7 +94,7 @@ std::istream& operator>>(std::istream& is, Saison& saison)
     // To do
     is >> saison.numSaison_ >> saison.nbEpisodesmax_;
     return is;
-    //Question: Il ne faut pas initialiser les épisodes? Dans quel ordre on l'initialise?
+    //Question: Est-ce qu'il faut initialiser le nom de la saison aussi? Et les épisodes?
 }
 
 // To do

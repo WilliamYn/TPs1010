@@ -26,10 +26,6 @@ public:
 
     unsigned int getNumEpisode() const;
 
-    std::string getNom() const; //pas deja laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    //done
-    std::string getDuree() const; //pas deja laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    //done
 
 private:
     // Attributs

@@ -11,7 +11,7 @@ GestionnaireSaisons::~GestionnaireSaisons()
 GestionnaireSaisons& GestionnaireSaisons::operator+=(std::unique_ptr<Saison> saison)
 {
     // To do
-    int indexSaison = trouverIndexSaison(saison->getNumSaison);
+    int indexSaison = trouverIndexSaison(saison->getNumSaison());
     if (indexSaison != -1) // si la saison existe déjà dans les saisons_
     {
         *this -= saison->getNumSaison(); // retire la saison
@@ -56,7 +56,7 @@ size_t GestionnaireSaisons::trouverIndexSaison(const unsigned int numSaison) con
     // done
     for (int i = 0; i < saisons_.size(); i++)
     {
-        if (numSaison == saisons_[i]->getNumSaison)
+        if (numSaison == saisons_[i]->getNumSaison())
         {
             return i;
         }
