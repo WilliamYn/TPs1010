@@ -12,11 +12,11 @@ GestionnaireSaisons& GestionnaireSaisons::operator+=(std::unique_ptr<Saison> sai
 {
     // To do
     int indexSaison = trouverIndexSaison(saison->getNumSaison());
-    if (indexSaison != -1) // si la saison existe déjà dans les saisons_
+    if (indexSaison != -1) // si la saison existe dï¿½jï¿½ dans les saisons_
     {
         *this -= saison->getNumSaison(); // retire la saison
     }
-    saisons_.push_back(saison);
+    saisons_.push_back(std::move(saison));
     sort(saisons_.begin(), saisons_.end(), Saison::SortByNumSaison());
 }
 

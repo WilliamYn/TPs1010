@@ -42,8 +42,10 @@ namespace
 // To do
 Media::Media(Auteur* auteur, Media::TypeMedia typeMedia)
     : auteur_(auteur)
-    , typeMedia_(typeMedia)//iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-
+    , typeMedia_(typeMedia)
+    , nom_(""), anneeDeSortie_(0), genre_(Genre::first_), pays_(Pays::first_)
+    , estRestreintParAge_(0)
+    //J'ai ajouté les autres attributs et j'ai mis des valeurs par défaut
 // To do
 {
 }
