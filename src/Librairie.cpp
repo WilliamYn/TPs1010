@@ -182,7 +182,25 @@ Media* Librairie::chercherMedia(const std::string& nomMedia, Media::TypeMedia ty
 bool Librairie::lireLigneRestrictions(const std::string& ligne)
 {
     // To do
-    
+    std::istringstream stream(ligne);
+    std::string nomFilm;
+    if (stream >> std::quoted(nomFilm))
+    {
+        Film* film = chercherFilm(nomFilm);
+        if (film == nullptr)
+        {
+            // Film n'existe pas
+            return false;
+        }
+
+        int paysValeurEnum;
+        while (stream >> paysValeurEnum)
+        {
+            film->ajouterPaysRestreint(to_enum<Pays>(paysValeurEnum));
+        }
+        return true;
+    }
+    return false;
 }
 
 // To do
