@@ -50,6 +50,7 @@ Saison& Saison::operator+=(std::unique_ptr<Episode> episode)
     }
     episodes_.push_back(std::make_unique<Episode>(episode));
     sort(episodes_.begin(), episodes_.end(), Episode::SortByNumEpisode()); 
+    return *this;
 }
 
 // To do
@@ -85,12 +86,16 @@ std::ostream& operator<<(std::ostream& os, const Saison& saison)
     {
         os << saison.episodes_[i];
     }
+    return os;
 }
 // To do
 std::istream& operator>>(std::istream& is, Saison& saison)
 {
     // To do
-}/////////////////////////////////////////////////////////////////////////////////////////////////////
+    is >> saison.numSaison_ >> saison.nbEpisodesmax_;
+    return is;
+    //Question: Il ne faut pas initialiser les épisodes? Dans quel ordre on l'initialise?
+}
 
 // To do
 unsigned int Saison::getNumSaison() const
@@ -117,5 +122,5 @@ size_t Saison::trouverIndexEpisode(unsigned int numEpisode)
             return i;
         }
     }
-    return -1;
+    return EPISODE_INEXSISTANTE;
 }
