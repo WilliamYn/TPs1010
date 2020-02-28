@@ -64,7 +64,7 @@ std::ostream& operator<<(std::ostream& os, const Auteur& auteur)
 {
     os << "Nom: " << auteur.nom_ << " | Date de naissance: " << auteur.anneeDeNaissance_
        << " | Nombre de Film/Serie: " << auteur.nbMedias_;
-
+    //revoir les espaces
     return os;
 }
 
@@ -73,6 +73,6 @@ std::ostream& operator<<(std::ostream& os, const Auteur& auteur)
 std::istream& operator>>(std::istream& is, Auteur& auteur)
 {
     // To do
-    is >> auteur.nom_ >> auteur.anneeDeNaissance_; //Il n'y a pas d'attribut nbMedias_ dans le fichier textttttttttttttttttttttt?
+    is >> auteur.nom_ >> auteur.anneeDeNaissance_; 
     return is;
 }

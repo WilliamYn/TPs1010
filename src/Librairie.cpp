@@ -1,7 +1,7 @@
 #include "Librairie.h"
 
 // To do
-//Constructeur par copie
+// Constructeur par copie
 Librairie::Librairie(const Librairie& librairie)
 {
     // To do
@@ -12,12 +12,15 @@ Librairie::Librairie(const Librairie& librairie)
 Librairie& Librairie::operator=(const Librairie& librairie)
 {
     // To do
-    if(this != &librairie){
+    if (this != &librairie)
+    {
         medias_.clear();
-        for(int i=0; i<librairie.medias_.size(); i++){
-            medias_[i] = std::make_unique<Media>(librairie.medias_[i].get()); //pas sur
+        for (int i = 0; i < librairie.medias_.size(); i++)
+        {
+            medias_.push_back(std::make_unique<Media>(*(librairie.medias_[i])));
         }
     }
+    return *this;
 }
 
 //! Destructeur de la classe Librairie
@@ -33,7 +36,6 @@ Film* Librairie::chercherFilm(const std::string& nomFilm)
     Media* media = chercherMedia(nomFilm, Media::TypeMedia::Film);
     return dynamic_cast<Film*>(media);
 }
-
 
 // To do
 Serie* Librairie::chercherSerie(const std::string& nomSerie)
@@ -63,9 +65,7 @@ void Librairie::ajouterEpisode(const std::string& nomSerie, unsigned int numSais
 {
     // To do
     *(chercherSerie(nomSerie)->getSaison(numSaison)) += std::move(episode);
-    
 }
-
 
 void Librairie::retirerEpisode(const std::string& nomSerie, unsigned int numSaison,
                                unsigned int numEpisode)
@@ -84,10 +84,13 @@ bool Librairie::chargerMediasDepuisFichier(const std::string& nomFichier,
 {
     // To do
     std::ifstream fichier(nomFichier);
-    if(fichier){
+    if (fichier)
+    {
         std::string ligne;
-        while(getline(fichier, ligne)){
-            if(!lireLigneMedia(ligne, gestionnaireAuteurs)){
+        while (getline(fichier, ligne))
+        {
+            if (!lireLigneMedia(ligne, gestionnaireAuteurs))
+            {
                 return false;
             }
         }
@@ -132,7 +135,7 @@ std::ostream& operator<<(std::ostream& os, const Librairie& librairie)
     // To do
     for (int i = 0; i < librairie.medias_.size(); i++)
     {
-    librairie.medias_[i]->afficher(os) << std::endl;
+        librairie.medias_[i]->afficher(os) << std::endl;
     }
     return os;
 }
@@ -141,8 +144,10 @@ std::ostream& operator<<(std::ostream& os, const Librairie& librairie)
 size_t Librairie::trouverIndexMedia(const std::string& nomMedia) const
 {
     // To do
-    for(int i=0; i<medias_.size(); i++){
-        if(medias_[i]->getNom() == nomMedia){
+    for (int i = 0; i < medias_.size(); i++)
+    {
+        if (medias_[i]->getNom() == nomMedia)
+        {
             return i;
         }
     }
@@ -154,6 +159,7 @@ Librairie& Librairie::operator+=(std::unique_ptr<Media> media)
 {
     // To do
     medias_.push_back(std::move(media));
+    return *this;
 }
 
 // To do
@@ -161,9 +167,11 @@ Librairie& Librairie::operator-=(const std::string& nomMedia)
 {
     // To do
     int indexMedia = trouverIndexMedia(nomMedia);
-    if(indexMedia != MEDIA_INEXSISTANT){
+    if (indexMedia != MEDIA_INEXSISTANT)
+    {
         medias_.erase(medias_.begin() + indexMedia);
     }
+    return *this;
 }
 
 // To do
@@ -171,11 +179,12 @@ Media* Librairie::chercherMedia(const std::string& nomMedia, Media::TypeMedia ty
 {
     // To do
     int indexMedia = trouverIndexMedia(nomMedia);
-    if(indexMedia==MEDIA_INEXSISTANT){
+    if (indexMedia == MEDIA_INEXSISTANT)
+    {
         return nullptr;
     }
     return medias_[indexMedia].get();
-    //not using typeMedia??????????????????????????????????????
+    // not using typeMedia??????????????????????????????????????
 }
 
 // To do
@@ -240,7 +249,6 @@ bool Librairie::lireLigneEpisode(std::istream& is, GestionnaireAuteurs&)
 
     ajouterEpisode(nomSerie, numSaison, std::make_unique<Episode>(episode));
     return true;
-
 }
 
 // To do
@@ -283,22 +291,23 @@ bool Librairie::lireLigneFilm(std::istream& is, GestionnaireAuteurs& gestionnair
 
     std::string nomAuteur, duree;
 
-    if(!(is >> nomAuteur)){
+    if (!(is >> nomAuteur))
+    {
         return false;
     }
     Auteur* auteur = gestionnaireAuteurs.chercherAuteur(nomAuteur);
     Film film(auteur);
-    if(!(film.lire(is))){
+    if (!(film.lire(is)))
+    {
         return false;
     }
     *this += std::make_unique<Film>(film);
     return true;
 
-    //on n'a pas utilisé set et getNbMedias de la classe Auteur
-    //UNFINISHED FUNCTION: il faut set lire la duree et le mettre dans le film
-    //Aussi, l'auteur du film est sorti deux fois du is. Une fois dans le >> nomAuteur; 
-    //Une deuxième fois dans le >> film;
-    
+    // on n'a pas utilisé set et getNbMedias de la classe Auteur
+    // UNFINISHED FUNCTION: il faut set lire la duree et le mettre dans le film
+    // Aussi, l'auteur du film est sorti deux fois du is. Une fois dans le >> nomAuteur;
+    // Une deuxième fois dans le >> film;
 }
 
 // To do
@@ -306,11 +315,14 @@ size_t Librairie::getNbFilms() const
 {
     // To do
     int nbFilms = 0;
-    for(int i=0; i<medias_.size(); i++){
-        if(medias_[i]->getTypeMedia() == Media::TypeMedia::Film){
+    for (int i = 0; i < medias_.size(); i++)
+    {
+        if (medias_[i]->getTypeMedia() == Media::TypeMedia::Film)
+        {
             nbFilms++;
         }
     }
+    return nbFilms;
 }
 
 // To do
@@ -318,11 +330,14 @@ size_t Librairie::getNbSeries() const
 {
     // To do
     int nbSeries = 0;
-    for(int i=0; i<medias_.size(); i++){
-        if(medias_[i]->getTypeMedia() == Media::TypeMedia::Serie){
+    for (int i = 0; i < medias_.size(); i++)
+    {
+        if (medias_[i]->getTypeMedia() == Media::TypeMedia::Serie)
+        {
             nbSeries++;
         }
     }
+    return nbSeries;
 }
 
 // To do
@@ -331,8 +346,7 @@ size_t Librairie::getNbSaisons(const std::string& nomSerie) const
     // To do
     int indexSerie = trouverIndexMedia(nomSerie);
     return dynamic_cast<Serie*>((medias_[indexSerie]).get())->getNbSaisons();
-    //je n'utilise pas chercherSerie
-
+    // je n'utilise pas chercherSerie
 }
 
 // To do

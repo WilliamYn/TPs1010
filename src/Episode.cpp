@@ -10,7 +10,8 @@ Episode::Episode():nom_(""), duree_(""), numEpisode_(0)
 
 // To do
 //Constructeur par paramètres
-Episode::Episode(unsigned int numEpisode, const std::string& nom, const std::string& duree):nom_(nom), duree_(duree), numEpisode_(numEpisode)
+Episode::Episode(unsigned int numEpisode, const std::string& nom, const std::string& duree):
+    nom_(nom), duree_(duree), numEpisode_(numEpisode)
 // To do
 {
 }
@@ -30,8 +31,9 @@ bool Episode::operator==(unsigned int numEpisode)
 std::ostream& operator<<(std::ostream& os, const Episode& episode)
 {
     // To do
-    os << "Episode " << std::setfill('0') << std::setw(2) << episode.numEpisode_ << " " << episode.nom_
-       << " | Duree: " << episode.duree_;  //affichage correcttttttttttttttttttttttttttttttttttttttttttt
+    os << "Episode " << std::setfill('0') << std::setw(2) << episode.numEpisode_ << ":" << episode.nom_
+       << " | Duree: " << episode.duree_;  
+    //revoir l'affichage
     return os;
 }
 

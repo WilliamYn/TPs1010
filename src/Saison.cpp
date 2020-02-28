@@ -48,7 +48,7 @@ Saison& Saison::operator+=(std::unique_ptr<Episode> episode)
     {
         *this -= episode->getNumEpisode();
     }
-    episodes_.push_back(std::make_unique<Episode>(episode));
+    episodes_.push_back(std::make_unique<Episode>(*episode));
     sort(episodes_.begin(), episodes_.end(), Episode::SortByNumEpisode()); 
     return *this;
 }

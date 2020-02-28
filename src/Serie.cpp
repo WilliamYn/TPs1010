@@ -27,8 +27,7 @@ Serie::Serie(const Serie& serie)
     // To do
     for (int i = 0; i < serie.saisons_.size(); i++)
     {
-        saisons_.push_back(std::move(serie.saisons_[i]));
-        //On utilise std::move car saisons est un vecteur de unique ptr
+        saisons_.push_back(std::make_unique<Saison>(*(serie.saisons_[i])));
     }
 }
 
@@ -39,6 +38,7 @@ std::ostream& Serie::afficher(std::ostream& os) const
     Media::afficher(os);
     //GestionnaireSaisons::afficher(os); //pas suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur. Car classe abstraite????????????????????
     //Il ne faut pas appeler afficher de GestionnaireSaison car celui ci est =0
+    return os;
 }
 
 // To do

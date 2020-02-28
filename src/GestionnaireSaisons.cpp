@@ -18,6 +18,7 @@ GestionnaireSaisons& GestionnaireSaisons::operator+=(std::unique_ptr<Saison> sai
     }
     saisons_.push_back(std::move(saison));
     sort(saisons_.begin(), saisons_.end(), Saison::SortByNumSaison());
+    return *this;
 }
 
 // To do

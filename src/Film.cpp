@@ -6,6 +6,7 @@
 // To do
 Film::Film(Auteur* auteur)
     : Media(auteur, TypeMedia::Film)
+    , duree_("")
 // To do
 {
 }
@@ -23,7 +24,7 @@ Film::Film(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pays
 std::ostream& Film::afficher(std::ostream& os) const
 {
     // To do
-    Media::afficher(os) << "          Duree: " << duree_ << std::endl << std::endl;
+    Media::afficher(os) << "    Duree: " << duree_ << std::endl << std::endl;
     return os;
 }
 
