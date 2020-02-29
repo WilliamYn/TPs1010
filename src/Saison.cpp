@@ -79,12 +79,23 @@ bool Saison::operator==(unsigned int numSaison)
 std::ostream& operator<<(std::ostream& os, const Saison& saison)
 {
     // To do
-    os << "Saison " << saison.numSaison_ << ": " << saison.episodes_.size() << "/"
-       << saison.nbEpisodesmax_; // TERMINER, EN COURS
-                                 // ???????????????????????????????????????????????????????
+    std::string statut;
+    if (saison.nbEpisodesmax_ > saison.episodes_.size())
+    {
+        statut = "(En cours)";
+    }
+    else
+    {
+        statut = "(Terminée)";
+    }
+    os << "Saison" << std::setw(2) << std::setfill('0') << 
+		saison.numSaison_ << ":"
+       << saison.episodes_.size() << "/"
+       << saison.nbEpisodesmax_ << statut; 
+                                 
     for (int i = 0; i < saison.episodes_.size(); i++)
     {
-        os << saison.episodes_[i];
+        os << std::endl << *(saison.episodes_[i]);
     }
     return os;
 }
@@ -94,7 +105,6 @@ std::istream& operator>>(std::istream& is, Saison& saison)
     // To do
     is >> saison.numSaison_ >> saison.nbEpisodesmax_;
     return is;
-    //Question: Est-ce qu'il faut initialiser le nom de la saison aussi? Et les épisodes?
 }
 
 // To do

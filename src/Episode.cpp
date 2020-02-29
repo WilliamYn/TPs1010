@@ -31,8 +31,8 @@ bool Episode::operator==(unsigned int numEpisode)
 std::ostream& operator<<(std::ostream& os, const Episode& episode)
 {
     // To do
-    os << "Episode " << std::setfill('0') << std::setw(2) << episode.numEpisode_ << ":" << episode.nom_
-       << " | Duree: " << episode.duree_;  
+    os << "Episode" << std::setw(2) << std::setfill('0') << episode.numEpisode_ << ":" << episode.nom_
+       << "|Durée: " << episode.duree_;  
     //revoir l'affichage
     return os;
 }

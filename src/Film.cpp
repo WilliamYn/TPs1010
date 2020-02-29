@@ -32,6 +32,7 @@ std::ostream& Film::afficher(std::ostream& os) const
 std::istream& Film::lire(std::istream& is)
 { // To do
     is >> *this >> std::quoted(duree_);
+	//J'ai enlevé le is >> *this >> std::quoted(duree_)
     return is;
 }
 

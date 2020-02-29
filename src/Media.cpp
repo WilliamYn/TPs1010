@@ -1,5 +1,6 @@
 #include "Media.h"
-#include "Auteur.h"
+
+
 
 namespace
 {
@@ -86,6 +87,8 @@ Media::Media(const Media& serie)
 Media::~Media()
 { // destructeur virttuellllllllllllllllllllllllllllllllllllllllllllllllllllllll
   // To do
+    paysRestreints_.clear();
+    
 }
 
 // To do

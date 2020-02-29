@@ -89,7 +89,9 @@ int main()
                                  [](unsigned char c) { return isspace(c); }),
                        saisonString.end());
     tests.push_back((saisonString == saisonStringAttendu) && (saison_01.getNbEpisodes() == 2) &&
-                     (saison_01 == 1));
+                    (saison_01 == 1));
+    //   &&
+        //
 
 #else
     tests.push_back(false);
@@ -122,7 +124,7 @@ int main()
     tests.push_back(false);
 #endif
 
-#if false
+#if true
     // Test 4: classe Film / Media
 
     Film film_01(&auteur_01);
@@ -135,7 +137,7 @@ int main()
     std::istringstream streanFilm(filmLigne);
     std::stringstream filmStream;
 
-    streanFilm >> film_01; //BOGUE ici
+    streanFilm >> film_01;
     filmStream << film_01;
     filmString = filmStream.str();
     std::cout << filmString << std::endl;
@@ -151,7 +153,7 @@ int main()
     tests.push_back(false);
 #endif
 
-#if true
+#if false
     // Test 5: classe Serie / Media / GestionnaireSaison
     Serie serie_01(&auteur_01);
 
@@ -352,7 +354,7 @@ int main()
     tests.push_back(false);
 #endif
 
-#if true
+#if false
     // Test 9: Fonction recherche d'auteurs
     const Auteur* auteurTest = gestionnaireAuteurs.chercherAuteur("George Lucas");
     const Auteur* auteurInexsistant = gestionnaireAuteurs.chercherAuteur("qwerty");
@@ -364,7 +366,7 @@ int main()
     tests.push_back(false);
 #endif
 
-#if true
+#if false
     // Test 10: Ajouter des films
     size_t nbFilmsAvantTest10 = librairie.getNbMedias();
     static constexpr unsigned int test10NbFilmsAjouter = 200;

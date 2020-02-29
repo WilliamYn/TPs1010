@@ -62,8 +62,8 @@ bool Auteur::operator==(const std::string& nom) const
 //! \param auteur l'auteur a afficher
 std::ostream& operator<<(std::ostream& os, const Auteur& auteur)
 {
-    os << "Nom: " << auteur.nom_ << " | Date de naissance: " << auteur.anneeDeNaissance_
-       << " | Nombre de Film/Serie: " << auteur.nbMedias_;
+    os << "Nom:" << auteur.nom_ << "|Date de naissance:" << auteur.anneeDeNaissance_
+       << "|Nombre de Film/Serie:" << auteur.nbMedias_;
     //revoir les espaces
     return os;
 }
@@ -73,6 +73,6 @@ std::ostream& operator<<(std::ostream& os, const Auteur& auteur)
 std::istream& operator>>(std::istream& is, Auteur& auteur)
 {
     // To do
-    is >> auteur.nom_ >> auteur.anneeDeNaissance_; 
+    is >> std::quoted(auteur.nom_) >> auteur.anneeDeNaissance_; 
     return is;
 }
