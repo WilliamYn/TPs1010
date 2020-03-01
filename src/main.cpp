@@ -89,7 +89,7 @@ int main()
                                  [](unsigned char c) { return isspace(c); }),
                        saisonString.end());
     tests.push_back((saisonString == saisonStringAttendu) && (saison_01.getNbEpisodes() == 2) &&
-                    (saison_01 == 1));
+                     (saison_01 == 1));
 
 #else
     tests.push_back(false);
@@ -213,7 +213,6 @@ int main()
     // le programme puisse les trouver.
     bool resultatLectureAuteurs = gestionnaireAuteurs.chargerDepuisFichier("auteurs.txt") &&
                                   gestionnaireAuteurs.chargerDepuisFichier("auteurs.txt");
-    
     bool resultatLectureFilms =
         librairie.chargerMediasDepuisFichier("Medias.txt", gestionnaireAuteurs) &&
         librairie.chargerMediasDepuisFichier("Medias.txt", gestionnaireAuteurs);

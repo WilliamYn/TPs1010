@@ -2,19 +2,23 @@
 #include "GestionnaireSaisons.h"
 
 // To do
+//!  Destructeur de la classe GestionnaireSaisons
 GestionnaireSaisons::~GestionnaireSaisons()
 { // To do
     saisons_.clear();
 }
 
 // To do
+//!  Opérateur += de la classe GestionnaireSaisons pour ajouter une saison
+//! \param saison                     La saison à ajouter au vecteur de saisons
+//! \return                           L'objet Gestionnaire saison  
 GestionnaireSaisons& GestionnaireSaisons::operator+=(std::unique_ptr<Saison> saison)
 {
     // To do
     int indexSaison = trouverIndexSaison(saison->getNumSaison());
-    if (indexSaison != -1) // si la saison existe d�j� dans les saisons_
+    if (indexSaison != SAISON_INEXSISTANTE) 
     {
-        *this -= saison->getNumSaison(); // retire la saison
+        *this -= saison->getNumSaison();
     }
     saisons_.push_back(std::move(saison));
     sort(saisons_.begin(), saisons_.end(), Saison::SortByNumSaison());
@@ -22,11 +26,14 @@ GestionnaireSaisons& GestionnaireSaisons::operator+=(std::unique_ptr<Saison> sai
 }
 
 // To do
+//!  Opérateur -= de la classe GestionnaireSaisons pour enlever une saison
+//! \param numSaison                  Le numéro de la saison à enlever   
+//! \return                           L'objet Gestionnaire saison  
 GestionnaireSaisons& GestionnaireSaisons::operator-=(const unsigned int numSaison)
 {
     // To do
     int indexSaison = trouverIndexSaison(numSaison);
-    if (indexSaison != -1)
+    if (indexSaison != SAISON_INEXSISTANTE)
     {
         saisons_.erase(saisons_.begin() + trouverIndexSaison(numSaison));
     }
@@ -34,11 +41,13 @@ GestionnaireSaisons& GestionnaireSaisons::operator-=(const unsigned int numSaiso
 }
 
 // To do
+//!  Méthode qui ajoute un épisode à une saison
+//! \param numSaison                  Le numéro de la saison à laquelle ajouter l'épisode
+//! \param episode                    L'épisode à ajouter
 void GestionnaireSaisons::ajouterEpisode(const unsigned int numSaison,
                                          std::unique_ptr<Episode> episode)
 {
     // To do
-    //*getSaison(numSaison) += std::move(episode);
     int indexSaison = trouverIndexSaison(numSaison);
     if (indexSaison != SAISON_INEXSISTANTE)
     {
@@ -47,6 +56,9 @@ void GestionnaireSaisons::ajouterEpisode(const unsigned int numSaison,
 }
 
 // To do
+//!  Méthode qui retire un épisode à une saison
+//! \param numSaison                  Le numéro de la saison à laquelle retirer l'épisode
+//! \param episode                    Le numéro de l'épisode à enlever
 void GestionnaireSaisons::retirerEpisode(const unsigned int numSaison,
                                          const unsigned int numEpisode)
 {
@@ -56,6 +68,9 @@ void GestionnaireSaisons::retirerEpisode(const unsigned int numSaison,
 }
 
 /// To do
+//!  Méthode qui trouve l'index d'une saison dans le vecteur saisons_
+//! \param numSaison                  Le numéro de la saison à trouver
+//! \return                           L'index de la saison
 size_t GestionnaireSaisons::trouverIndexSaison(const unsigned int numSaison) const
 {
     // To do
@@ -70,6 +85,9 @@ size_t GestionnaireSaisons::trouverIndexSaison(const unsigned int numSaison) con
 }
 
 // To do
+//!  Méthode qui trouve une saison dans le vecteur de GestionnaireSaisons
+//! \param numSaison                  Le numéro de la saison à trouver
+//! \return                           Un pointeur (raw) vers la saison
 Saison* GestionnaireSaisons::getSaison(const unsigned int numSaison) const
 {
     // todo
@@ -82,6 +100,8 @@ Saison* GestionnaireSaisons::getSaison(const unsigned int numSaison) const
 }
 
 // To do
+//!  Méthode getter pour trouver le nombre de saisons dans le vecteur
+//! \return                           Le nombre de saisons
 size_t GestionnaireSaisons::getNbSaisons() const
 {
     // To do

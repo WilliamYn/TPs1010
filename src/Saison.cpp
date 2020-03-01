@@ -86,14 +86,13 @@ std::ostream& operator<<(std::ostream& os, const Saison& saison)
     {
         statut = "(Terminee)";
     }
-    os << std::endl << "\tSaison" << std::setw(2) << std::setfill('0') << 
-		saison.numSaison_ << ":"
+    os << "\tSaison " << std::setw(2) << std::setfill('0') << 
+		saison.numSaison_ << ": "
        << saison.episodes_.size() << "/"
-       << saison.nbEpisodesmax_ << statut; 
-                                 
+       << saison.nbEpisodesmax_ << statut << std::endl;
     for (int i = 0; i < saison.episodes_.size(); i++)
     {
-        os << std::endl << *(saison.episodes_[i]);
+        os << *(saison.episodes_[i]) << std::endl;
     }
     return os;
 }

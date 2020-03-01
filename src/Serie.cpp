@@ -36,9 +36,10 @@ std::ostream& Serie::afficher(std::ostream& os) const
 {
     // To do
     Media::afficher(os);
+    //Saison saison(5, 15);Saison num 5 avec 15 episodes max pour tester, ca marche
     for (int i = 0; i < saisons_.size(); i++)
     {
-        os << *(saisons_[i]); // affiche les saisons et les episodes
+        os << *(saisons_[i]); // affiche les saisons
     }
     return os;
 }
@@ -48,5 +49,5 @@ std::unique_ptr<Media> Serie::clone() const
 {
     // To do
     return std::make_unique<Media>(*this);
-    // make_unique prend l'objet entre parenthèses, le copie et retourne un unique_ptr qui y pointe
+    // make_unique prend l'objet entre parenthï¿½ses, le copie et retourne un unique_ptr qui y pointe
 }

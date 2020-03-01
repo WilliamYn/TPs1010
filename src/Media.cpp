@@ -134,17 +134,17 @@ std::ostream& Media::afficher(std::ostream& os) const
 {
     // To do
     os << nom_ << std::endl;
-    os << "\tDate de sortie:" << anneeDeSortie_ << std::endl;
-    os << "\tGenre:" << getGenreString(genre_) << std::endl;
-    os << "\tAuteur:" << auteur_->getNom() << std::endl;
-    os << "\tPays:" << getPaysString(pays_) << std::endl;
+    os << "\tDate de sortie: " << anneeDeSortie_ << std::endl;
+    os << "\tGenre: " << getGenreString(genre_) << std::endl;
+    os << "\tAuteur: " << auteur_->getNom() << std::endl;
+    os << "\tPays: " << getPaysString(pays_) << std::endl;
     if (paysRestreints_.size() == 0)
     {
         os << "\tAucun pays restreint." << std::endl;
     }
     else
     {
-        os << "\tPays restreints:" << std::endl;
+        os << "\tPays restreints: " << std::endl;
         for (int i = 0; i < paysRestreints_.size(); i++)
         {
             os << "\t\t" << getPaysString(paysRestreints_[i]) << std::endl;
