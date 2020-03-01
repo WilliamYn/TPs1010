@@ -1,12 +1,10 @@
 #include "Media.h"
 
-
-
 namespace
 {
     //! Fonction qui convertit le enum Media::Genre en string
     //! \param genre    Le genre à convertir
-    //! \return         Le string qui représente le enum
+    //! \return         Le string qui represente le enum
     const std::string& getGenreString(Media::Genre genre)
     {
         static const std::string NOMS_GENRES[] = {"Action",
@@ -22,7 +20,7 @@ namespace
 
     //! Fonction qui convertit le enum Pays en string
     //! \param pays     Le pays à convertir
-    //! \return         Le string qui représente le enum
+    //! \return         Le string qui represente le enum
     const std::string& getPaysString(Pays pays)
     {
         static const std::string NOMS_PAYS[] = {"Bresil",
@@ -44,9 +42,12 @@ namespace
 Media::Media(Auteur* auteur, Media::TypeMedia typeMedia)
     : auteur_(auteur)
     , typeMedia_(typeMedia)
-    , nom_(""), anneeDeSortie_(0), genre_(Genre::first_), pays_(Pays::first_)
+    , nom_("")
+    , anneeDeSortie_(0)
+    , genre_(Genre::first_)
+    , pays_(Pays::first_)
     , estRestreintParAge_(0)
-    //J'ai ajouté les autres attributs et j'ai mis des valeurs par défaut
+// J'ai ajoute les autres attributs et j'ai mis des valeurs par defaut
 // To do
 {
 }
@@ -85,10 +86,10 @@ Media::Media(const Media& serie)
 
 // To do
 Media::~Media()
-{ // destructeur virttuellllllllllllllllllllllllllllllllllllllllllllllllllllllll
+{ // destructeur virttuel
   // To do
     paysRestreints_.clear();
-    
+
 }
 
 // To do
@@ -106,7 +107,7 @@ void Media::supprimerPaysRestreints()
 }
 
 // To do
-// Regarde si le pays passé en paramètre est dans paysRestreints
+// Regarde si le pays passe en paramètre est dans paysRestreints
 bool Media::estRestreintDansPays(Pays pays) const
 {
     // To do
@@ -133,19 +134,20 @@ std::ostream& Media::afficher(std::ostream& os) const
 {
     // To do
     os << nom_ << std::endl;
-    os << "\tDate de anneeDeSortie_:" << anneeDeSortie_ << std::endl;
-    os << "\tGenre: " << getGenreString(genre_) << std::endl;
-    os << "\tAuteur: " << auteur_ << std::endl;
-    os << "\tPays: " << getPaysString(pays_) << std::endl;
+    os << "\tDate de sortie:" << anneeDeSortie_ << std::endl;
+    os << "\tGenre:" << getGenreString(genre_) << std::endl;
+    os << "\tAuteur:" << auteur_->getNom() << std::endl;
+    os << "\tPays:" << getPaysString(pays_) << std::endl;
     if (paysRestreints_.size() == 0)
     {
-        os << "\tAucun pays restreints." << std::endl;
+        os << "\tAucun pays restreint." << std::endl;
     }
     else
     {
+        os << "\tPays restreints:" << std::endl;
         for (int i = 0; i < paysRestreints_.size(); i++)
         {
-            os << "\t\t" << getPaysString(paysRestreints_[i]);
+            os << "\t\t" << getPaysString(paysRestreints_[i]) << std::endl;
         }
     }
     return os;
@@ -178,14 +180,19 @@ Media::TypeMedia Media::getTypeMedia() const
     return typeMedia_;
 }
 
+Auteur* Media::getAuteur() const
+{
+    return auteur_;
+}
+
 // To do
 std::istream& Media::lire(std::istream& is)
 {
     // To do
-    //On a enlevé type et auteur
+    // On a enleve type et auteur
     int valeurNumeriqueGenre, valeurNumeriquePays;
-    is >> std::quoted(nom_) >> anneeDeSortie_ >> valeurNumeriqueGenre >>
-        valeurNumeriquePays >> estRestreintParAge_;
+    is >> std::quoted(nom_) >> anneeDeSortie_ >> valeurNumeriqueGenre >> valeurNumeriquePays >>
+        estRestreintParAge_;
     genre_ = static_cast<Genre>(valeurNumeriqueGenre);
     pays_ = static_cast<Pays>(valeurNumeriquePays);
     return is;

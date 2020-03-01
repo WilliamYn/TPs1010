@@ -24,15 +24,15 @@ Film::Film(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pays
 std::ostream& Film::afficher(std::ostream& os) const
 {
     // To do
-    Media::afficher(os) << "    Duree: " << duree_ << std::endl << std::endl;
+    Media::afficher(os) << "\tDuree:" << duree_ << std::endl << std::endl;
     return os;
 }
 
 // To do
 std::istream& Film::lire(std::istream& is)
 { // To do
-    is >> *this >> std::quoted(duree_);
-	//J'ai enlevé le is >> *this >> std::quoted(duree_)
+
+    Media::lire(is) >> std::quoted(duree_);
     return is;
 }
 

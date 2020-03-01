@@ -3,7 +3,7 @@
 //! Constructeur de la classe Utilisateur
 //! \param nom          Le nom de l'utilisateur
 //! \param age          L'âge de l'utilisateur
-//! \param estPremium   Bool représentant si l'utilisateur est premium
+//! \param estPremium   Bool representant si l'utilisateur est premium
 //! \param pays         Pays de l'utilisateur
 Utilisateur::Utilisateur(const std::string& nom, unsigned int age, bool estPremium, Pays pays)
     : nom_(nom)
@@ -14,9 +14,9 @@ Utilisateur::Utilisateur(const std::string& nom, unsigned int age, bool estPremi
 {
 }
 
-//! Méthode qui retourne si le film est disponible pour un utilisateur
-//! \param film Le film à évaluer
-//! \return Un bool représentant si un film est disponible à l'utilisateur
+//! Methode qui retourne si le film est disponible pour un utilisateur
+//! \param film Le film à evaluer
+//! \return Un bool representant si un film est disponible à l'utilisateur
 bool Utilisateur::mediaEstDisponible(const Media& media) const
 {
     static constexpr unsigned int AGE_MINIMUM_POUR_FILMS_RESTREINTS = 16;
@@ -29,16 +29,16 @@ bool Utilisateur::mediaEstDisponible(const Media& media) const
     return (ageApproprie == true && media.estRestreintDansPays(pays_) == false);
 }
 
-//! Méthode qui retourne si un utilisateur a atteint le nombre limite de films qu'il peut regarder
-//! \return Un bool représentant si un utilisateur a atteint le nombre limite de films qu'il peut
+//! Methode qui retourne si un utilisateur a atteint le nombre limite de films qu'il peut regarder
+//! \return Un bool representant si un utilisateur a atteint le nombre limite de films qu'il peut
 //! regarder
 bool Utilisateur::nbLimiteMediasAtteint() const
 {
     return estPremium_ == false && nbMediasVus_ >= NB_FILMS_GRATUITS;
 }
 
-//! Méthode qui incrémente le nombre de films vus par l'utilisateur
-//! \return Un bool représentant si l'utilisateur a pu regarder le film
+//! Methode qui incremente le nombre de films vus par l'utilisateur
+//! \return Un bool representant si l'utilisateur a pu regarder le film
 bool Utilisateur::regarderMedia(const Media& media)
 {
     if (nbLimiteMediasAtteint() == false && mediaEstDisponible(media))
@@ -49,7 +49,7 @@ bool Utilisateur::regarderMedia(const Media& media)
     return false;
 }
 
-//! Méthode qui retourne le nombre de films vus par l'utilisateur
+//! Methode qui retourne le nombre de films vus par l'utilisateur
 //! \return Le nombre de films vus par l'utilisateur
 unsigned int Utilisateur::getNbMediasVus() const
 {

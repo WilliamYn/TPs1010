@@ -2,7 +2,7 @@
 #include "Saison.h"
 
 // To do
-// Constructeur par défaut
+// Constructeur par defaut
 Saison::Saison()
     : numSaison_(0)
     , nbEpisodesmax_(0) // maybe not 0. maybe vector
@@ -39,15 +39,13 @@ Saison::~Saison()
 }
 
 // To do
-// L'opérateur ajoute un épisode aux épisodes de la saison
+// L'operateur ajoute un episode aux episodes de la saison
 Saison& Saison::operator+=(std::unique_ptr<Episode> episode)
 {
     // To do
     int indexEpisode = trouverIndexEpisode(episode->getNumEpisode());
     if (indexEpisode != -1)
-    {
         *this -= episode->getNumEpisode();
-    }
     episodes_.push_back(std::make_unique<Episode>(*episode));
     sort(episodes_.begin(), episodes_.end(), Episode::SortByNumEpisode()); 
     return *this;
@@ -86,9 +84,9 @@ std::ostream& operator<<(std::ostream& os, const Saison& saison)
     }
     else
     {
-        statut = "(Terminée)";
+        statut = "(Terminee)";
     }
-    os << "Saison" << std::setw(2) << std::setfill('0') << 
+    os << std::endl << "\tSaison" << std::setw(2) << std::setfill('0') << 
 		saison.numSaison_ << ":"
        << saison.episodes_.size() << "/"
        << saison.nbEpisodesmax_ << statut; 

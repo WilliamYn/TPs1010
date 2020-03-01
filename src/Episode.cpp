@@ -2,7 +2,7 @@
 #include "Episode.h"
 
 // To do
-//Constructeur par défaut
+//Constructeur par defaut
 Episode::Episode():nom_(""), duree_(""), numEpisode_(0)
 // To do
 {
@@ -31,8 +31,8 @@ bool Episode::operator==(unsigned int numEpisode)
 std::ostream& operator<<(std::ostream& os, const Episode& episode)
 {
     // To do
-    os << "Episode" << std::setw(2) << std::setfill('0') << episode.numEpisode_ << ":" << episode.nom_
-       << "|Durée: " << episode.duree_;  
+    os << "\t\tEpisode" << std::setw(2) << std::setfill('0') << episode.numEpisode_ << ":" << episode.nom_
+       << "|Duree: " << episode.duree_;  
     //revoir l'affichage
     return os;
 }
