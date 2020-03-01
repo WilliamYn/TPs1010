@@ -67,7 +67,6 @@ void Librairie::ajouterSaison(const std::string& nomSerie, std::unique_ptr<Saiso
     {
         *serie += std::move(saison);
     }
-    
 }
 
 // To do
@@ -383,7 +382,6 @@ bool Librairie::lireLigneSerie(std::istream& is, GestionnaireAuteurs& gestionnai
 bool Librairie::lireLigneFilm(std::istream& is, GestionnaireAuteurs& gestionnaireAuteurs)
 {
     // To do
-
     std::string nomAuteur, duree;
     if (!(is >> std::quoted(nomAuteur)))
     {

@@ -24,6 +24,8 @@ Saison::Saison(unsigned int numSaison, unsigned int nbEpisodemax)
 Saison::Saison(const Saison& saison)
 {
     // To do
+    nbEpisodesmax_ = saison.nbEpisodesmax_;
+    numSaison_ = saison.numSaison_;
     for (int i = 0; i < saison.getNbEpisodes(); i++)
     {
         Episode episode = *saison.episodes_[i];
