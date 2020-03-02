@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   gestionnaireAuteurs.h
+   Date : 1 mars 2020 */
+
 #ifndef GESTIONNAIREAUTEURS_H
 #define GESTIONNAIREAUTEURS_H
 

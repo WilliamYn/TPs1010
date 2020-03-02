@@ -1,5 +1,10 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   film.cpp
+   Date : 1 mars 2020 */
+
 // To do
-// done
 #include "Film.h"
 #include "Media.h"
 
@@ -37,6 +42,8 @@ Film::Film(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pays
 std::ostream& Film::afficher(std::ostream& os) const
 {
     // To do
+    //NOTE: Notre chargé nous a fait la mention d'enlever les accents dans le main
+    //On n'a donc pas mis d'accents à Duree
     Media::afficher(os) << "\tDuree: " << duree_;
     return os;
 }

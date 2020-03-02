@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   auteur.cpp
+   Date : 1 mars 2020 */
+
 // To do
 #include "Auteur.h"
 

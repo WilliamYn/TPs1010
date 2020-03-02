@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   GestionnaireAuteurs.cpp
+   Date : 1 mars 2020 */
+
 #include "GestionnaireAuteurs.h"
 
 //! Constructeur de la classe GestionnaireAuteurs

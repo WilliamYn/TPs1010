@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   librairie.h
+   Date : 1 mars 2020 */
+
 #ifndef Librairie_H
 #define Librairie_H
 

@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   media.h
+   Date : 1 mars 2020 */
+
 #ifndef MEDIA_H
 #define MEDIA_H
 

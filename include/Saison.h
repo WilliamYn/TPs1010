@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   saison.h
+   Date : 1 mars 2020 */
+
 #ifndef SAISON_H
 #define SAISON_H
 

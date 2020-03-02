@@ -1,3 +1,9 @@
+/*
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   serie.h
+   Date : 1 mars 2020 */
+
 #ifndef Serie_1_H
 #define Serie_1_H
 
