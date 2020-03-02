@@ -20,7 +20,7 @@ Saison::Saison(unsigned int numSaison, unsigned int nbEpisodemax)
 }
 
 // To do
-// Constructeur par copie
+//!   Constructeur par copie
 Saison::Saison(const Saison& saison)
 {
     // To do
@@ -34,6 +34,7 @@ Saison::Saison(const Saison& saison)
 }
 
 // To do
+//!  Destructeur de saison
 Saison::~Saison()
 {
     // To do
@@ -41,7 +42,9 @@ Saison::~Saison()
 }
 
 // To do
-// L'operateur ajoute un episode aux episodes de la saison
+//!  Opérateur += qui prend une saison à gauche et un episode à droite
+//! \param episode                       L'épisode
+//! \return                              L'objet courant
 Saison& Saison::operator+=(std::unique_ptr<Episode> episode)
 {
     // To do
@@ -54,6 +57,9 @@ Saison& Saison::operator+=(std::unique_ptr<Episode> episode)
 }
 
 // To do
+//!  Opérateur -= qui prend une saison à gauche et un numéro d'épisode à droite
+//! \param numEpisode                    Le numéro de l'épisode
+//! \return                              L'objet courant
 Saison& Saison::operator-=(unsigned int numEpisode)
 {
     // To do
@@ -65,6 +71,9 @@ Saison& Saison::operator-=(unsigned int numEpisode)
 }
 
 // To do
+//!  Opérateur == qui prend une saison à gauche et un numéro de saison à droite
+//! \param numEpisode                    Le numéro de l'épisode
+//! \return                              L'objet courant
 bool Saison::operator==(unsigned int numSaison)
 {
     // To do
@@ -76,6 +85,10 @@ bool Saison::operator==(unsigned int numSaison)
 }
 
 // To do
+//!  Opérateur << qui prend un os à gauche et une saison è droite
+//! \param os                            le stream os
+//! \param saison                        la saison
+//! \return                              Le stream
 std::ostream& operator<<(std::ostream& os, const Saison& saison)
 {
     // To do
@@ -99,6 +112,10 @@ std::ostream& operator<<(std::ostream& os, const Saison& saison)
     return os;
 }
 // To do
+//!  Opérateur >> qui prend un is à gauche et une saison è droite
+//! \param os                            le stream is
+//! \param saison                        la saison
+//! \return                              Le stream
 std::istream& operator>>(std::istream& is, Saison& saison)
 {
     // To do
@@ -107,6 +124,8 @@ std::istream& operator>>(std::istream& is, Saison& saison)
 }
 
 // To do
+//!  Méthode getter qui retourne le numéro de la saison
+//! \return                              Le numéro de saison
 unsigned int Saison::getNumSaison() const
 {
     // To do
@@ -114,6 +133,8 @@ unsigned int Saison::getNumSaison() const
 }
 
 // To do
+//!  Méthode getter qui retourne le nombre d'épisode de la saison
+//! \return                              Le nombre d'épisodes
 size_t Saison::getNbEpisodes() const
 {
     // To do
@@ -121,6 +142,9 @@ size_t Saison::getNbEpisodes() const
 }
 
 // To do
+//!  Méthode qui retourne l'index d'un episode à partir de son numéro
+//! \param numEpisode                    Le numéro de l'épisode
+//! \return                              L'index
 size_t Saison::trouverIndexEpisode(unsigned int numEpisode)
 {
     // To do

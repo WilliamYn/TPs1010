@@ -1,7 +1,9 @@
 // To do
 #include "Serie.h"
 
-// To do              Pointeur vers l'auteur du serie
+// To do
+//!  Constructeur de serie avec un auteur
+//! \param auteur                        L'auteur de la serie
 Serie::Serie(Auteur* auteur)
     : Media(auteur, Media::TypeMedia::Serie)
     , GestionnaireSaisons()
@@ -10,6 +12,7 @@ Serie::Serie(Auteur* auteur)
 }
 
 // To do
+//!  Constructeur par paramètres de serie
 Serie::Serie(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pays pays,
              bool estRestreintParAge, Auteur* auteur)
     : Media(nom, anneeDeSortie, genre, pays, estRestreintParAge, auteur, Media::TypeMedia::Serie)
@@ -19,7 +22,8 @@ Serie::Serie(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pa
 }
 
 // To do
-// Constructeur par copie de serie
+//!  Constructeur par copie
+//! \param serie                       La serie à copier
 Serie::Serie(const Serie& serie)
     : Media(serie)
 // To do
@@ -32,6 +36,9 @@ Serie::Serie(const Serie& serie)
 }
 
 // To do
+//!  Méthode qui affiche une série dans un stream
+//! \param os                        Le stream
+//! \return                          Le stream
 std::ostream& Serie::afficher(std::ostream& os) const
 {
     // To do
@@ -45,9 +52,10 @@ std::ostream& Serie::afficher(std::ostream& os) const
 }
 
 // To do
+//!  Méthode qui retourne un objet alloué dynamiquement qui est une copie de l'objet courante
+//! \return                              L'objet alloué dynamiquement
 std::unique_ptr<Media> Serie::clone() const
 {
     // To do
     return std::make_unique<Media>(*this);
-    // make_unique prend l'objet entre parenth�ses, le copie et retourne un unique_ptr qui y pointe
 }

@@ -39,6 +39,9 @@ namespace
 } // namespace
 
 // To do
+//!  Constructeur de la classe média
+//! \param auteur                         L'auteur du media
+//! \param typeMedia                      Le type du media 
 Media::Media(Auteur* auteur, Media::TypeMedia typeMedia)
     : auteur_(auteur)
     , typeMedia_(typeMedia)
@@ -47,12 +50,12 @@ Media::Media(Auteur* auteur, Media::TypeMedia typeMedia)
     , genre_(Genre::first_)
     , pays_(Pays::first_)
     , estRestreintParAge_(0)
-// J'ai ajoute les autres attributs et j'ai mis des valeurs par defaut
 // To do
 {
 }
 
 // To do
+//!  Constructeur par paramètres de la classe media
 Media::Media(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pays pays,
              bool estRestreintParAge, Auteur* auteur, Media::TypeMedia typeMedia)
     : nom_(nom)
@@ -67,7 +70,7 @@ Media::Media(const std::string& nom, unsigned int anneeDeSortie, Genre genre, Pa
 }
 
 // To do
-// Constructeur par copie
+// Constructeur par copie de media
 Media::Media(const Media& serie)
 {
     // To do
@@ -85,14 +88,17 @@ Media::Media(const Media& serie)
 }
 
 // To do
+//!  Destructeur virtuel de media
 Media::~Media()
-{ // destructeur virttuel
+{ 
   // To do
     paysRestreints_.clear();
 
 }
 
 // To do
+//!  Méthode qui ajoute un pays restreint à un media
+//! \param pays                          Le pays à ajouter
 void Media::ajouterPaysRestreint(Pays pays)
 {
     // To do
@@ -100,6 +106,8 @@ void Media::ajouterPaysRestreint(Pays pays)
 }
 
 // To do
+//!  Méthode qui supprime un pays restreint à un media
+//! \param pays                          Le pays à supprimer
 void Media::supprimerPaysRestreints()
 {
     // To do
@@ -107,7 +115,9 @@ void Media::supprimerPaysRestreints()
 }
 
 // To do
-// Regarde si le pays passe en paramètre est dans paysRestreints
+//!  Méthode qui regarde si un un média est restreint dans un certain pays
+//! \param pays                          Le pays à vérifier
+//! \return                              un bool qui représente si le pays est restreint
 bool Media::estRestreintDansPays(Pays pays) const
 {
     // To do
@@ -122,6 +132,8 @@ bool Media::estRestreintDansPays(Pays pays) const
 }
 
 // To do
+//!  Méthode qui regarde si un un média est restreint par age
+//! \return                              un bool qui représente si le pays est restreint
 bool Media::estRestreintParAge() const
 {
     // To do
@@ -130,6 +142,9 @@ bool Media::estRestreintParAge() const
 }
 
 // To do
+//!  Méthode qui affiche le media
+//! \param os                          Le stream dans lequel afficher
+//! \return                            Le stream os
 std::ostream& Media::afficher(std::ostream& os) const
 {
     // To do
@@ -154,12 +169,18 @@ std::ostream& Media::afficher(std::ostream& os) const
 }
 
 // To do
+//!  Surcharge de l'opérateur d'affichage
+//! \param os                          Le stream os
+//! \param media                       Le média
+//! \return                            Le stream
 std::ostream& operator<<(std::ostream& os, const Media& media)
 { // To do
     return media.afficher(os);
 }
 
 // To do
+//!  Méthode getter qui trouve le genre d'un média
+//! \return                            Le genre
 Media::Genre Media::getGenre() const
 {
     // To do
@@ -167,6 +188,8 @@ Media::Genre Media::getGenre() const
 }
 
 // To do
+//!  Méthode getter qui retourne le nom d'un média
+//! \return                            Le nom
 const std::string& Media::getNom() const
 {
     // To do
@@ -174,18 +197,25 @@ const std::string& Media::getNom() const
 }
 
 // To do
+//!  Méthode getter qui retourne le type d'un média
+//! \return                            Le type du média
 Media::TypeMedia Media::getTypeMedia() const
 {
     // To do
     return typeMedia_;
 }
 
+//!  Méthode getter qui retourne l'auteur d'un média
+//! \return                            L'auteur en pointeur raw
 Auteur* Media::getAuteur() const
 {
     return auteur_;
 }
 
 // To do
+//!  Méthode qui lit un is et le met dans média
+//! \param is                            Le stream is
+//! \return                              Le stream is
 std::istream& Media::lire(std::istream& is)
 {
     // To do
@@ -199,12 +229,18 @@ std::istream& Media::lire(std::istream& is)
 }
 
 // To do
+//!  Opérateur de lecture
+//! \param is                            Le stream is
+//! \param media                         Le media
+//! \return                              Le stream is
 std::istream& operator>>(std::istream& is, Media& media)
 {
     return media.lire(is);
 }
 
 // To do
+//!  Méthode qui retourne un objet alloué dynamiquement qui est une copie de l'objet courant 
+//! \return                              La copie
 std::unique_ptr<Media> Media::clone() const
 {
     // To do
