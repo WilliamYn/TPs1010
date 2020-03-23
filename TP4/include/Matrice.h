@@ -103,7 +103,7 @@ template <typename T> bool Matrice<T>::lireElement(const std::string &elementFic
     std::stringstream streamElement;
     streamElement.str(elementFichier);
     streamElement >> element;
-    return ajouterElement(element);
+    return ajouterElement(element, posY, posX);
 }
 
 //Todo
@@ -112,19 +112,22 @@ template <typename T> bool Matrice<T>::lireElement(const std::string &elementFic
 template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &nomFichier)
 {
     std::string ligne, mot;
-    ifstream fichier(nomFichier);
+    std::ifstream fichier(nomFichier);
     if(fichier){
         int posY = -1, posX = 0;
-        while(getline(fichier, ligne){ 
-            if (ligne == 'L') {
+        while(getline(fichier, ligne)){ 
+            if (ligne == "L") {
                 posY++;
                 posX = 0;
                 continue;
             }
-            std::stringstream streamLigne;
-            streamLigne(ligne);
+            std::stringstream streamLigne(ligne);
             while(streamLigne >> mot){
-                (lireElement(mot, posY, posX)) ? : return false;
+                //(lireElement(mot, posY, posX)) ? : return false;  TERNARY
+                if(!lireElement(mot, posY, posX)){
+                    return false;
+                }
+                //Il faut remplacer le if par un TERNARY mais ça cause une erreure
                 posX++;
 			}
 		}

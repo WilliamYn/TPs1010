@@ -24,7 +24,7 @@ private:
 /**
  * @brief constructeur par défaut de la classe
  */
-template <class M> AgrandirMatrice<M>::AgrandirMatrice() : matrice(nullptr)
+template <class M> AgrandirMatrice<M>::AgrandirMatrice() : matrice_(nullptr)
 {
   // TO DO
 
@@ -48,8 +48,8 @@ template <class M>
 Coordonnees AgrandirMatrice<M>::trouverLePlusProcheVoisin(const unsigned int &rapport,
                                               size_t posY, size_t posX) const {
   // TO DO
-  size_t nouvellePosY = floor(posY / rapport);
-  size_t nouvellePosX = floor(posX / rapport);
+  int nouvellePosY = (int)(posY / rapport);
+  int nouvellePosX = (int)(posX / rapport);
   Coordonnees nouvellesCoordonnees{ nouvellePosX, nouvellePosY };
   //Vérifier algorithme
   return nouvellesCoordonnees;
@@ -63,14 +63,14 @@ void AgrandirMatrice<M>::redimensionnerImage(const unsigned int& rapport)
     std::unique_ptr<M> copieMatrice = matrice_->clone();
 
     matrice_->setHeight(rapport * matrice_->getHeight());
-    matrice_->setWidth(rapport * matrice_->getwidth());
+    matrice_->setWidth(rapport * matrice_->getWidth());
 
 
-    Coordonnees coordonnes;
+    Coordonnees coordonnees;
     for(size_t y =0; y < matrice_->getHeight(); y++){
         for(size_t x = 0; x < matrice_->getWidth(); x++){
             coordonnees = trouverLePlusProcheVoisin(rapport, y, x);
-            matrice_[y][x] = copieMatrice[coordonnes.y][coordonnes.x];
+            matrice_[y][x] = copieMatrice[coordonnees.y][coordonnees.x];
 		}
 	}
 }

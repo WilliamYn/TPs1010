@@ -48,9 +48,9 @@ template <class M>
 inline Coordonnees
 PivoterMatrice<M>::changerCoordonneesCentreMatrice(Coordonnees coords) const {
   // TO DO
-    int width = matrice->getWidth();
-    int milieu = floor(width / 2.0);
-    Coordonnes nouvellesCoordonnees{ coords.x - milieu, coords.y - milieu };
+    int width = matrice_->getWidth();
+    int milieu = (int)(width / 2.0);
+    Coordonnees nouvellesCoordonnees{ coords.x - milieu, coords.y - milieu };
     return nouvellesCoordonnees;
 }
 /**
@@ -62,9 +62,9 @@ template <class M>
 inline Coordonnees
 PivoterMatrice<M>::recupererCoordonnees(Coordonnees coords) const {
   // TO DO
-    int width = matrice->getWidth();
-    int milieu = floor(width / 2.0);
-    Coordonnes anciennesCoordonnees{ coords.x + milieu, coords.y + milieu };
+    int width = matrice_->getWidth();
+    int milieu = (int)(width / 2.0);
+    Coordonnees anciennesCoordonnees{ coords.x + milieu, coords.y + milieu };
     return anciennesCoordonnees;
 }
 
