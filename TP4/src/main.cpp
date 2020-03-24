@@ -19,10 +19,10 @@
 // écrit pour vous. Ainsi, vous pourrez graduellement les #if true et tester des
 // petits blocs de code à la fois. Commencez par écrire vos constructeurs!
 
-int main() {
+int main() {/*
   initDebogageMemoire();
   std::vector<bool> tests;
-#if false
+#if true
   Matrice<int> matriceNombres;
   if (matriceNombres.chargerDepuisFichier("matrice_nombres.txt")) {
     Image<Matrice<int>> *imageNombres =
@@ -85,7 +85,7 @@ int main() {
 
 #else
   // Tests de la classe Pixel: Tests 1-4
-#if false
+#if true
   Pixel pixel;
   // Setters
   pixel.setRouge(255);
@@ -125,7 +125,7 @@ int main() {
 #endif
   // Tests de la classe Matrice
   // Initialisation de la matrice
-#if false
+#if true
   Matrice<Entier> matriceTest;
   bool initialisationTest = (matriceTest.getHeight() == 0) &&
                             (matriceTest.getWidth() == 0) &&
@@ -165,7 +165,7 @@ int main() {
   std::unique_ptr<Matrice<Entier>> ptrMatrice =
       std::make_unique<Matrice<Entier>>(matriceTest);
   // Trouver point plus proche
-#if false
+#if true
   AgrandirMatrice<Matrice<Entier>> agrandissment(ptrMatrice.get());
   bool algorithmeTest =
       (agrandissment.trouverLePlusProcheVoisin(5, 3, 4).x == 0) &&
@@ -187,7 +187,7 @@ int main() {
   tests.push_back(false);
 #endif
   // Tests de la classe PivoterMatrice
-#if false
+#if true
   PivoterMatrice<Matrice<Entier>> pivotement(ptrMatrice.get());
   pivotement.pivoterMatrice(Direction::Left);
   bool pivoterMatriceTest =
@@ -246,6 +246,6 @@ int main() {
                             0.0f);
   std::cout << std::left << std::setw(16) << "TOTAL: " << stream.str() << '\n';
 #endif
-
+  */
   return 0;
 }

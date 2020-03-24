@@ -25,8 +25,9 @@ void Pixel::operator=(const Pixel &pixel) {
 
 void Pixel::setRouge(int rouge) {
   // TO DO
-    rouge_ = (rouge < 0) ? 0 : rouge;
-    rouge_ = (rouge_ > 255) ? 255 : rouge_;
+    //J"AI AJOUTERR DES STATICCCCCCCCCCCCCCCCCCCCCCCC CASTTT !!
+    rouge_ = (static_cast<uint8_t>(rouge) < 0) ? 0 : rouge;
+    rouge_ = (static_cast<uint8_t>(rouge_) > 255) ? 255 : rouge_;
 }
 
 void Pixel::setVert(int vert) {
@@ -59,7 +60,7 @@ uint8_t Pixel::getBleu() const { return bleu_; }
 std::ostream &operator<<(std::ostream &os, Pixel pixel) {
   // TO DO
     
-    os << "#" << std::setfill(0)<<std::hex <<std::setw(2) << pixel.getRouge() << " " << pixel.getVert() << " " << pixel.getBleu() << " ";
+    os << "#" << std::setfill('0')<<std::hex <<std::setw(2) << pixel.getRouge() << " " << pixel.getVert() << " " << pixel.getBleu() << " ";
     return os;
 }
 
@@ -69,7 +70,7 @@ std::istream &operator>>(std::istream &is, Pixel &pixel) {
     //ruuug = pixel.setBleu();
     //verrrrr = pixel.getVert();
     uint8_t bleu, rouge, vert;
-    is >> rouge, vert, bleu;
+    is >> rouge>> vert>> bleu;
     pixel.setRouge(rouge);
     pixel.setVert(vert);
     pixel.setBleu(bleu);
