@@ -24,23 +24,35 @@ void Pixel::operator=(const Pixel &pixel) {
 }
 
 void Pixel::setRouge(int rouge) {
-  // TO DO
-    //J"AI AJOUTERR DES STATICCCCCCCCCCCCCCCCCCCCCCCC CASTTT !!
-    rouge_ = (static_cast<uint8_t>(rouge) < 0) ? 0 : rouge;
-    rouge_ = (static_cast<uint8_t>(rouge_) > 255) ? 255 : rouge_;
+    // TO DO
+    rouge = ((rouge) < 0) ? 0 : rouge;
+    rouge_ = ((rouge) > 255) ? 255 : rouge;
 }
 
 void Pixel::setVert(int vert) {
-  // TO DO
-    vert_ = (vert < 0) ? 0 : vert;
-    vert_ = (vert_ > 255) ? 255 : vert_;
+    // TO DO
+    vert = (vert < 0) ? 0 : vert;
+    vert_ = (vert > 255) ? 255 : vert;
 }
 
 void Pixel::setBleu(int bleu) {
-  // TO DO
-    bleu_ = (bleu < 0) ? 0 : bleu;
-    bleu_ = (bleu_ > 255) ? 255 : bleu_;
+    // TO DO
+    bleu = (bleu < 0) ? 0 : bleu;
+    bleu_ = (bleu > 255) ? 255 : bleu;
 }
+
+  /*  if(bleu < 0){
+        bleu_ = 0;
+    }
+    else if (bleu > 255) {
+        bleu_ = 255;
+    }
+    else {
+        bleu_ = bleu;
+    }*/
+
+
+
 /**
  * @brief retourn l'attribut rouge_ du pixel
  * @return rouge_ du type uint8_t
@@ -60,7 +72,7 @@ uint8_t Pixel::getBleu() const { return bleu_; }
 std::ostream &operator<<(std::ostream &os, Pixel pixel) {
   // TO DO
     
-    os << "#" << std::setfill('0')<<std::hex <<std::setw(2) << pixel.getRouge() << " " << pixel.getVert() << " " << pixel.getBleu() << " ";
+    os << "#" <<std::uppercase<< std::setfill('0')<<std::hex <<std::setw(2) << unsigned(pixel.getRouge()) << " " << unsigned(pixel.getVert()) << " " << /*static_cast<int>*/unsigned(pixel.getBleu());
     return os;
 }
 
@@ -69,8 +81,9 @@ std::istream &operator>>(std::istream &is, Pixel &pixel) {
     //bluuu = pixel.getBleu();
     //ruuug = pixel.setBleu();
     //verrrrr = pixel.getVert();
-    uint8_t bleu, rouge, vert;
-    is >> rouge>> vert>> bleu;
+    int bleu, rouge, vert;
+    //is >> rouge , vert, bleu;
+    is >> rouge >> vert>> bleu;
     pixel.setRouge(rouge);
     pixel.setVert(vert);
     pixel.setBleu(bleu);

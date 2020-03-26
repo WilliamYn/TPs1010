@@ -78,28 +78,31 @@ inline void PivoterMatrice<M>::pivoterMatrice(Direction direction)
         for(int x=0; x<matrice_->getWidth(); x++){
             Coordonnees coordonnees{ x, y };
             Coordonnees nouvellesCoordonnees = changerCoordonneesCentreMatrice(coordonnees);
-            Coordonnees copieCoordonnees = nouvellesCoordonnees;
 
             //si on choise la direction 0 donc on va faire une rotation centree en 0.0 et vers la droite
             if (direction == Direction::Right) {
                 //      [x, y] --> [y, -x]
-
-                copieCoordonnees.x = nouvellesCoordonnees.y;
-                copieCoordonnees.y = -nouvellesCoordonnees.x;
+                int copieX = nouvellesCoordonnees.x;
+                nouvellesCoordonnees.x = nouvellesCoordonnees.y;
+                nouvellesCoordonnees.y = -copieX;
             }
-            //si on choise la direction 0 donc on va faire une rotation centree en 0.0 et vers la gauche
+            //si on choise la direction 1 donc on va faire une rotation centree en 0.0 et vers la gauche
             else if (direction == Direction::Left) {
                 //      [x, y] --> [-y, x]
-
-                copieCoordonnees.x = -nouvellesCoordonnees.y;
-                copieCoordonnees.y = nouvellesCoordonnees.x;
+                int copieX = nouvellesCoordonnees.x;
+                nouvellesCoordonnees.x = -nouvellesCoordonnees.y;
+                nouvellesCoordonnees.y = copieX;
             }
+
+            std::cout << "\nCoordonnees: " << coordonnees.x << coordonnees.y << "\n";
+            std::cout << "Dimensions: " << matrice_->getHeight() << matrice_->getWidth() << "\n";
+            std::cout << "Nouvelles coordonnees: " << nouvellesCoordonnees.x << nouvellesCoordonnees.y <<"\n";
+
+            nouvellesCoordonnees = recupererCoordonnees(nouvellesCoordonnees);
+            matrice_->ajouterElement((*copieMatrice)(nouvellesCoordonnees.y, nouvellesCoordonnees.x), y, x);
             
-            nouvellesCoordonnees.x = copieCoordonnees.x;
-            nouvellesCoordonnees.y = copieCoordonnees.y;
-            recupererCoordonnees(nouvellesCoordonnees);
-		}
-	}
+		      }
+	    }
     
 
           

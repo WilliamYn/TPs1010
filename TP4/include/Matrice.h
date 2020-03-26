@@ -89,7 +89,7 @@ template <typename T> bool Matrice<T>::ajouterElement(T element, const size_t &p
 {
     bool ajoutEffectue = false;
     if(posY < CAPACITE_MATRICE && posX < CAPACITE_MATRICE && posY >= 0 && posX >= 0){
-        (elements_[posY]).insert(elements_[posX].begin() + posX, element);
+        (elements_[posY]).insert(elements_[posY].begin() + posX, element);
         ajoutEffectue = true;
 	}
     return ajoutEffectue;
@@ -141,7 +141,7 @@ template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &n
 //retourne un pointeur vers une copie de la matrice
 template <typename T> std::unique_ptr<Matrice<T>> Matrice<T>::clone() const
 {
-    return std::make_unique<T>(*this);
+    return std::make_unique<Matrice<T>>(*this);
 }
 
 //Todo

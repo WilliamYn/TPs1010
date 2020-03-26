@@ -70,8 +70,17 @@ void AgrandirMatrice<M>::redimensionnerImage(const unsigned int& rapport)
     for(size_t y =0; y < matrice_->getHeight(); y++){
         for(size_t x = 0; x < matrice_->getWidth(); x++){
             coordonnees = trouverLePlusProcheVoisin(rapport, y, x);
-            matrice_[y][x] = copieMatrice[coordonnees.y][coordonnees.x]; 
-         // operateur () ???? -->  matrice_(y, x) = copieMatrice(coordonnees.y, coordonnees.x);
+
+            matrice_->ajouterElement((*copieMatrice)(coordonnees.y, coordonnees.x), y, x);
+           
+          //  matrice_[coordonnees] = copieMatrice[coordonnees.y][coordonnees.x];
+            
+          //  matrice_->elements[y][x] = copieMatrice[coordonnees.y][coordonnees.x];
+         //   (*matrice_)
+           // matrice_[coordonnees] = copieMatrice[coordonnees.y][coordonnees.x]; 
+            
+            
+       // ( *matrice_)(y, x) = copieMatrice(coordonnees.y, coordonnees.x);
 		}
 	}
 }

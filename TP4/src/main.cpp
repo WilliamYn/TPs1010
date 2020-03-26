@@ -19,10 +19,10 @@
 // écrit pour vous. Ainsi, vous pourrez graduellement les #if true et tester des
 // petits blocs de code à la fois. Commencez par écrire vos constructeurs!
 
-int main() {/*
+int main() {
   initDebogageMemoire();
   std::vector<bool> tests;
-#if true
+#if false
   Matrice<int> matriceNombres;
   if (matriceNombres.chargerDepuisFichier("matrice_nombres.txt")) {
     Image<Matrice<int>> *imageNombres =
@@ -192,13 +192,16 @@ int main() {/*
   pivotement.pivoterMatrice(Direction::Left);
   bool pivoterMatriceTest =
       (ptrMatrice->getHeight() == 9) && (ptrMatrice->getWidth() == 9);
+
   pivoterMatriceTest &= (ptrMatrice->operator()(8, 0) == 15) &&
-                        (ptrMatrice->operator()(7, 1) == 15);
+                         (ptrMatrice->operator()(7, 1) == 15);
+
   pivoterMatriceTest &= (ptrMatrice->operator()(5, 3) == 12) &&
                         (ptrMatrice->operator()(3, 5) == 12) &&
                         (ptrMatrice->operator()(4, 4) == 12);
+                        
   pivoterMatriceTest &= (ptrMatrice->operator()(1, 7) == 27) &&
-                        (ptrMatrice->operator()(0, 8) == 27);
+                         (ptrMatrice->operator()(0, 8) == 27);
   tests.push_back(pivoterMatriceTest);
 #else
   tests.push_back(false);
@@ -246,6 +249,6 @@ int main() {/*
                             0.0f);
   std::cout << std::left << std::setw(16) << "TOTAL: " << stream.str() << '\n';
 #endif
-  */
+
   return 0;
 }
