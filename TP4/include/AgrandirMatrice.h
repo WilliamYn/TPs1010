@@ -72,15 +72,6 @@ void AgrandirMatrice<M>::redimensionnerImage(const unsigned int& rapport)
             coordonnees = trouverLePlusProcheVoisin(rapport, y, x);
 
             matrice_->ajouterElement((*copieMatrice)(coordonnees.y, coordonnees.x), y, x);
-           
-          //  matrice_[coordonnees] = copieMatrice[coordonnees.y][coordonnees.x];
-            
-          //  matrice_->elements[y][x] = copieMatrice[coordonnees.y][coordonnees.x];
-         //   (*matrice_)
-           // matrice_[coordonnees] = copieMatrice[coordonnees.y][coordonnees.x]; 
-            
-            
-       // ( *matrice_)(y, x) = copieMatrice(coordonnees.y, coordonnees.x);
 		}
 	}
 }

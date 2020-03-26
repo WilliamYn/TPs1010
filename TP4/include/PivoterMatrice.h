@@ -94,9 +94,6 @@ inline void PivoterMatrice<M>::pivoterMatrice(Direction direction)
                 nouvellesCoordonnees.y = copieX;
             }
 
-            std::cout << "\nCoordonnees: " << coordonnees.x << coordonnees.y << "\n";
-            std::cout << "Dimensions: " << matrice_->getHeight() << matrice_->getWidth() << "\n";
-            std::cout << "Nouvelles coordonnees: " << nouvellesCoordonnees.x << nouvellesCoordonnees.y <<"\n";
 
             nouvellesCoordonnees = recupererCoordonnees(nouvellesCoordonnees);
             matrice_->ajouterElement((*copieMatrice)(nouvellesCoordonnees.y, nouvellesCoordonnees.x), y, x);

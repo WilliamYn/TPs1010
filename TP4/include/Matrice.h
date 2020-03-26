@@ -100,15 +100,13 @@ template <typename T> bool Matrice<T>::ajouterElement(T element, const size_t &p
 template <typename T> bool Matrice<T>::lireElement(const std::string &elementFichier, const size_t &posY, const size_t &posX)
 {
     T element;
-    std::stringstream streamElement;
-    streamElement.str(elementFichier);
+	std::istringstream streamElement(elementFichier);
     streamElement >> element;
     return ajouterElement(element, posY, posX);
 }
 
 //Todo
 //Charge la matrice à partir du fichier passe en parametre
-// Peux etreee il yaura une fautee
 template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &nomFichier)
 {
     std::string ligne, mot;
@@ -119,18 +117,15 @@ template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &n
             if (ligne == "L") {
                 posY++;
                 posX = 0;
-                continue;
+				continue;
             }
-            std::stringstream streamLigne(ligne);
-            while(streamLigne >> mot){
-                //(lireElement(mot, posY, posX)) ? : return false;  TERNARY
-                if(!lireElement(mot, posY, posX)){
-                    return false;
-                }
-                //Il faut remplacer le if par un TERNARY mais ça cause une erreure
-                posX++;
+			if (!lireElement(ligne, posY, posX)) {
+				return false;
 			}
+			posX++;
 		}
+		setHeight(posY+1);
+		setWidth(posX);
         return true;
 	}
     return false;

@@ -41,15 +41,6 @@ void Pixel::setBleu(int bleu) {
     bleu_ = (bleu > 255) ? 255 : bleu;
 }
 
-  /*  if(bleu < 0){
-        bleu_ = 0;
-    }
-    else if (bleu > 255) {
-        bleu_ = 255;
-    }
-    else {
-        bleu_ = bleu;
-    }*/
 
 
 
@@ -72,17 +63,15 @@ uint8_t Pixel::getBleu() const { return bleu_; }
 std::ostream &operator<<(std::ostream &os, Pixel pixel) {
   // TO DO
     
-    os << "#" <<std::uppercase<< std::setfill('0')<<std::hex <<std::setw(2) << unsigned(pixel.getRouge()) << " " << unsigned(pixel.getVert()) << " " << /*static_cast<int>*/unsigned(pixel.getBleu());
+    os << "#" <<std::uppercase<< std::setfill('0')<<std::hex <<std::setw(2) << unsigned(pixel.getRouge()) << " "
+		 << std::setw(2) << unsigned(pixel.getVert()) << " "
+		<< std::setw(2) << unsigned(pixel.getBleu());
     return os;
 }
 
 std::istream &operator>>(std::istream &is, Pixel &pixel) {
   // TO DO
-    //bluuu = pixel.getBleu();
-    //ruuug = pixel.setBleu();
-    //verrrrr = pixel.getVert();
     int bleu, rouge, vert;
-    //is >> rouge , vert, bleu;
     is >> rouge >> vert>> bleu;
     pixel.setRouge(rouge);
     pixel.setVert(vert);
