@@ -1,9 +1,9 @@
 /*
- * Titre : PivoterMatrice.h - Travail Pratique #4 - Programmation Orient�e Objet
- * Date : 27 F�vrier 2020
- * Auteur : Nabil Dabouz
- */
-
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   PivoterMatrice.h
+   Date : 26 Mars 2020 
+*/
 #ifndef PIVOTER_MATRICE_H
 #define PIVOTER_MATRICE_H
 
@@ -69,7 +69,8 @@ PivoterMatrice<M>::recupererCoordonnees(Coordonnees coords) const {
 }
 
 //Todo
-//Pivoter matrice
+//! Méthode qui pivote une matrice
+//! \param direction La direction qu'on veut pivoter  ( droite ou gauche )
 template<class M>
 inline void PivoterMatrice<M>::pivoterMatrice(Direction direction)
 {

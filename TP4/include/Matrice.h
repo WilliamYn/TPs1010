@@ -1,8 +1,9 @@
 /*
- * Titre : Matrice.h - Travail Pratique #4 - Programmation Orient�e Objet
- * Date : 27 F�vrier 2020
- * Auteur : Nabil Dabouz
- */
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   Matrice.h
+   Date : 26 Mars 2020
+*/
 
 #ifndef MATRICE_H
 #define MATRICE_H
@@ -48,13 +49,12 @@ static constexpr int CAPACITE_MATRICE = 100;
 /**
  * @brief constructeur par défaut de la classe
  */
-template <typename T> inline Matrice<T>::Matrice() : height_(0), width_(0), elements_(CAPACITE_MATRICE) 
+template <typename T> inline Matrice<T>::Matrice() : elements_(CAPACITE_MATRICE), height_(0), width_(0) 
 { 
   // TO DO
     for(int i=0; i<CAPACITE_MATRICE; i++){
         elements_[i] = std::vector<T>(CAPACITE_MATRICE);
 	}
-    //Vérifier capacite_matrice
 }
 /**
  * @brief retourne le nombre de lignes de la matrice
@@ -74,7 +74,10 @@ template <typename T> inline size_t Matrice<T>::getWidth() const
 }
 
 //Todo
-//Opérateur ()
+//! opérateur() qui retourn un element a une position [x,y]
+//! \param posY La valeur de la position Y
+//! \param posX La valeur de la position X
+//! \return     L'élément T de la matrice à la position donnée
 template <typename T> T Matrice<T>::operator()(const size_t &posY, const size_t &posX) const
 {
     if(posY < height_ && posX < width_ && posY >= 0 && posX >= 0){
@@ -84,7 +87,11 @@ template <typename T> T Matrice<T>::operator()(const size_t &posY, const size_t 
 }
 
 //Todo
-//Ajoute un élément passé en paramètre dans la position correspondante
+//! Méthode qui ajoute un element a un psition preci
+//! \param element L'element qu'on veut ajouter
+//! \param posY La valeur de la position Y ou on veut l'ajouter
+//! \param posX La valeur de la position X ou on veut l'ajouter
+//! \return   Si un ajout a ete efectuer ou non
 template <typename T> bool Matrice<T>::ajouterElement(T element, const size_t &posY, const size_t &posX)
 {
     bool ajoutEffectue = false;
@@ -96,7 +103,11 @@ template <typename T> bool Matrice<T>::ajouterElement(T element, const size_t &p
 }
 
 //Todo
-//Lit l'élément à partir de la chaine de caracteres puis lajoute dans la matrice
+//! Méthode qui lit l'élément à partir de la chaine de caracteres puis lajoute dans la matrice
+//! \param element L'element qu'on veut lire
+//! \param posY La valeur de la position Y ou on veut lire
+//! \param posX La valeur de la position X ou on veut lire
+//! \return   Si un bool si la lecture a ete efectuer ou non
 template <typename T> bool Matrice<T>::lireElement(const std::string &elementFichier, const size_t &posY, const size_t &posX)
 {
     T element;
@@ -106,7 +117,9 @@ template <typename T> bool Matrice<T>::lireElement(const std::string &elementFic
 }
 
 //Todo
-//Charge la matrice à partir du fichier passe en parametre
+//! Méthode qui charge la matrice à partir du fichier passe en parametre
+//! \param nomFichier Le fichier qu'on veut lire
+//! \return   Si un bool
 template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &nomFichier)
 {
     std::string ligne, mot;
@@ -129,18 +142,19 @@ template <typename T> bool Matrice<T>::chargerDepuisFichier(const std::string &n
         return true;
 	}
     return false;
-    //Vérifier la validité de ce code
 }
 
 //Todo
-//retourne un pointeur vers une copie de la matrice
+//! méthode pour clôner la matrice
+//! \return   Retourne un pointeur vers une copie de la matrice.
 template <typename T> std::unique_ptr<Matrice<T>> Matrice<T>::clone() const
 {
     return std::make_unique<Matrice<T>>(*this);
 }
 
 //Todo
-//setter pour le height
+//! setter pour le height
+//! \param height Le height qu'on veut set
 template<typename T> inline void Matrice<T>::setHeight(size_t height)
 {
     height_ = (height < CAPACITE_MATRICE) ? height : CAPACITE_MATRICE;
@@ -148,7 +162,8 @@ template<typename T> inline void Matrice<T>::setHeight(size_t height)
 }
 
 //Todo
-//setter pour le width
+//! setter pour le width
+//! \param width Le width qu'on veut set
 template<typename T> inline void Matrice<T>::setWidth(size_t width)
 {
     width_ = (width < CAPACITE_MATRICE) ? width : CAPACITE_MATRICE; 

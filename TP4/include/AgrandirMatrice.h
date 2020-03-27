@@ -1,7 +1,9 @@
 /*
- * Titre : AgrandirMatrice.h - Travail Pratique #4 - Programmation Orient�e
- * Objet Date : 27 F�vrier 2020 Auteur : Nabil Dabouz
- */
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   AgrandirMatrice.h
+   Date : 26 Mars 2020
+*/
 
 #ifndef AGRANDIR_MATRICE_H
 #define AGRANDIR_MATRICE_H
@@ -27,7 +29,6 @@ private:
 template <class M> AgrandirMatrice<M>::AgrandirMatrice() : matrice_(nullptr)
 {
   // TO DO
-
 }
 
 /**
@@ -51,12 +52,12 @@ Coordonnees AgrandirMatrice<M>::trouverLePlusProcheVoisin(const unsigned int &ra
   int nouvellePosY = (int)(posY / rapport);
   int nouvellePosX = (int)(posX / rapport);
   Coordonnees nouvellesCoordonnees{ nouvellePosX, nouvellePosY };
-  //Vérifier algorithme
   return nouvellesCoordonnees;
 }
 
 //Todo
-//Agrandir la matrice
+//! Méthode qui agrandir la matrice
+//! \param rapport Le valeur du rapport qu'on veut redimensionner
 template<class M>
 void AgrandirMatrice<M>::redimensionnerImage(const unsigned int& rapport)
 {
@@ -64,8 +65,6 @@ void AgrandirMatrice<M>::redimensionnerImage(const unsigned int& rapport)
 
     matrice_->setHeight(rapport * matrice_->getHeight());
     matrice_->setWidth(rapport * matrice_->getWidth());
-
-
     Coordonnees coordonnees;
     for(size_t y =0; y < matrice_->getHeight(); y++){
         for(size_t x = 0; x < matrice_->getWidth(); x++){

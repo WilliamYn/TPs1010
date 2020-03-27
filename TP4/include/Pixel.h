@@ -1,8 +1,9 @@
 /*
- * Titre : Pixel.h - Travail Pratique #4 - Programmation Orient�e Objet
- * Date : 27 F�vrier 2020
- * Auteur : Nabil Dabouz
- */
+   william younanian 2022401
+   jean-paul khoueiry 2011397
+   Pixel.h
+   Date : 26 Mars 2020
+*/
 
 #ifndef PIXEL_H
 #define PIXEL_H
