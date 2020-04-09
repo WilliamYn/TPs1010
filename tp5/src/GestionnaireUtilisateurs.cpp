@@ -15,17 +15,16 @@
 std::ostream& operator<<(std::ostream& outputStream, const GestionnaireUtilisateurs& gestionnaireUtilisateurs)
 {
     // TODO: Uncomment une fois que la fonction getNombreUtilisateurs est écrite
-    outputStream << "Le gestionnaire d'utilisateurs contient " // << gestionnaireUtilisateurs.getNombreUtilisateurs()
+    outputStream << "Le gestionnaire d'utilisateurs contient " << gestionnaireUtilisateurs.getNombreUtilisateurs()
                  << " utilisateurs:\n";
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
-    for (const& auto element : gestionnaireUtilisateurs.utilisateurs_) {
-        outputStream<< '\t' << element.second << '\n';//           NOTTTTTTTTTTTTTTTTTTTTTTTTTTTTSUREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!! peux etre "->"
-        //std::pair avec un int
-        //1er string, 2eme utilisaateur
+    for (const auto& [id, utilisateur] : gestionnaireUtilisateurs.utilisateurs_) {
+        outputStream<< id << '\t' << utilisateur << '\n';       //vérifier l'affichage
     }
     return outputStream;
 
+    //Boucle au départ:
     /*
     for (auto it = gestionnaireUtilisateurs.utilisateurs_.cbegin();
          it != gestionnaireUtilisateurs.utilisateurs_.cend();
@@ -62,7 +61,7 @@ bool GestionnaireUtilisateurs::chargerDepuisFichier(const std::string& nomFichie
             if (stream >> id >> std::quoted(nom) >> age >> pays)
             {
                 // TODO: Uncomment une fois que la fonction ajouterUtilisateur est écrite
-                // ajouterUtilisateur(Utilisateur{id, nom, age, static_cast<Pays>(pays)});
+                ajouterUtilisateur(Utilisateur{id, nom, age, static_cast<Pays>(pays)});
             }
             else
             {
@@ -81,24 +80,26 @@ bool GestionnaireUtilisateurs::chargerDepuisFichier(const std::string& nomFichie
 bool GestionnaireUtilisateurs::ajouterUtilisateur(const Utilisateur& utilisateur)
 //"prénom.nom.1@email.com", "Prénom Nom", 20, Pays::Canada
 {
-    return utilisateurs_.std::unordered_map::emplace(utilisateur.id, utilisateur).second;
+    return utilisateurs_.std::unordered_map<std::string, Utilisateur>::emplace(utilisateur.id, utilisateur).second;
 }
 
 //TODO
 bool GestionnaireUtilisateurs::supprimerUtilisateur(const std::string& idUtilisateur)
 {
-	return  utilisateurs_.map::erase(idUtilisateur);
+	return  utilisateurs_.unordered_map<std::string, Utilisateur>::erase(idUtilisateur);
 }
 
+//TODO
 std::size_t GestionnaireUtilisateurs::getNombreUtilisateurs() const
 {
     return utilisateurs_.size();
 }
 
-const Utilisateur* getUtilisateurParId(const std::string& id) const
+//TODO
+const Utilisateur* GestionnaireUtilisateurs::getUtilisateurParId(const std::string& id) const
 {
-	auto it = utilisateurs_.find(id);
-    if(it == utilisateur_.end())
-       return &(it->second());
+	std::unordered_map<std::string, Utilisateur>::const_iterator it = utilisateurs_.find(id);
+    if(it != utilisateurs_.end())
+       return &(it->second);
     return nullptr;
 }
