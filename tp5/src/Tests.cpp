@@ -279,7 +279,7 @@ namespace Tests
         EstDansIntervalleDatesFilm foncteurIntervalle(anneeInferieure, anneeSuperieure);
         bool estDansIntervalle1 = foncteurIntervalle(film1);
         bool estDansIntervalle2 = foncteurIntervalle(film2);
-        bool estDansIntervalle3 = foncteurIntervalle(film3);
+        bool vIntervalle3 = foncteurIntervalle(film3);
         bool estDansIntervalle4 = foncteurIntervalle(film4);
         bool estDansIntervalle5 = foncteurIntervalle(film5);
         bool estDansIntervalle6 = foncteurIntervalle(film6);

@@ -5,22 +5,46 @@
 
 #include <string>
 #include <unordered_map>
+
 //Il manque sûrement des includes
 
 
 class EstDansIntervalleDatesFilm
 {
+public:
+    EstDansIntervalleDatesFilm (int anneeInferieure, int anneeSuperieure) : 
+        min_(anneeInferieure), 
+        max_(anneeSuperieure){};
 
+    bool operator()(const std::unique_ptr<Film>& film)//prendre en parametrestd::unique_ptr
+    {
+        return (film->annee >= min_ && film->annee <= max_);
+	};		  
+private:
+    int min_, max_;
 };
 
 class ComparateurLog
+#include "LigneLog.h"
 {
+public:
+	ComparateurLog();
+	bool operator()(LigneLog::LigneLog ligneLog1, LigneLog::LigneLog ligneLog2)
+	{
+		return (ligneLog1.timestamp < ligneLog2.timestamp);
+	};
+};		
 
-};
-
+template<class T1,class T2>
 class ComparateurSecondElementPair
 {
-
+	public:
+	    T1 first;
+		T2 second;
+		ComparateurSecondElementPair();
+		bool operator()(T1 pair1, T2 pair2)
+            {
+                return (pair1.second<pair2.second )
+			}
 };
-
 #endif
