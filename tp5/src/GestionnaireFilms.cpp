@@ -23,7 +23,7 @@ GestionnaireFilms::GestionnaireFilms(const GestionnaireFilms& other)
     for (const auto& film : other.films_)
     {
         // TODO: Uncomment une fois que la fonction ajouterFilm est écrite
-        // ajouterFilm(*film);
+         ajouterFilm(*film);
     }
 }
 
@@ -93,7 +93,7 @@ bool GestionnaireFilms::chargerDepuisFichier(const std::string& nomFichier)
             if (stream >> std::quoted(nom) >> genre >> pays >> std::quoted(realisateur) >> annee)
             {
                 // TODO: Uncomment une fois que la fonction ajouterFilm est écrite
-                // ajouterFilm(Film{nom, static_cast<Film::Genre>(genre), static_cast<Pays>(pays), realisateur, annee});
+                 ajouterFilm(Film{nom, static_cast<Film::Genre>(genre), static_cast<Pays>(pays), realisateur, annee});
             }
             else
             {
@@ -106,4 +106,38 @@ bool GestionnaireFilms::chargerDepuisFichier(const std::string& nomFichier)
     }
     std::cerr << "Erreur GestionnaireFilms: le fichier " << nomFichier << " n'a pas pu être ouvert\n";
     return false;
+}
+
+//TODO
+const Film* GestionnaireFilms::getFilmParNom(const std::string& nom) const
+{
+    auto it = filtreNomFilms_.find(nom);
+    if(it!=filtreNomFilms_.end())
+        return it->second;
+    return nullptr;
+}
+
+//TODO
+bool GestionnaireFilms::ajouterFilm(const Film& film)
+{
+    //première façon (pas d'erreur, mais bizarre)
+    if(getFilmParNom(film.nom)!=nullptr)
+    {
+        films_.push_back(std::make_unique<Film>(film));
+        filtreNomFilms_.std::unordered_map<std::string, const Film*>::emplace(film.nom, films_.back().get());
+        filtreGenreFilms_[film.genre].push_back(films_.back().get());
+        filtrePaysFilms_[film.pays].push_back(films_.back().get());
+        return true;
+    }
+    return false;
+
+    //deuxième façon (erreur, mais moins bizarre si on peut arranger)
+    // if(filtreNomFilms_.std::unordered_map<std::string, const Film*>::emplace(film.nom, &film).second)
+    // {
+    //     films_.push_back(std::make_unique<Film>(film));        //pas sur. Est-ce que je peux donner l'adresse comme ça?
+    //     filtreGenreFilms_[film.genre].push_back(&film);
+    //     filtrePaysFilms_[film.pays].push_back(&film);
+    //     return true;
+    // }
+    // return false;
 }

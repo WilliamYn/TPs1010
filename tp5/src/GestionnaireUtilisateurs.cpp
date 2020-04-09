@@ -98,8 +98,8 @@ std::size_t GestionnaireUtilisateurs::getNombreUtilisateurs() const
 //TODO
 const Utilisateur* GestionnaireUtilisateurs::getUtilisateurParId(const std::string& id) const
 {
-	std::unordered_map<std::string, Utilisateur>::const_iterator it = utilisateurs_.find(id);
-    if(it != utilisateurs_.end())
+	auto it = utilisateurs_.find(id);
+    if(it!=utilisateurs_.end())
        return &(it->second);
     return nullptr;
 }
