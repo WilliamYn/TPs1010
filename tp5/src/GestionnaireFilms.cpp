@@ -50,16 +50,22 @@ std::ostream& operator<<(std::ostream& outputStream, const GestionnaireFilms& ge
                  << "Affichage par catégories:\n";
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
-    for (auto it = gestionnaireFilms.filtreGenreFilms_.cbegin(); it != gestionnaireFilms.filtreGenreFilms_.cend();
-            ++it)
+    // for (auto it = gestionnaireFilms.filtreGenreFilms_.cbegin(); it != gestionnaireFilms.filtreGenreFilms_.cend();
+    //         ++it)
+    // {
+    //     Film::Genre genre = it->first;
+    //     std::vector<const Film*> listeFilms = it->second;
+    //     outputStream << "Genre: " << getGenreString(genre) << " (" << listeFilms.size() << " films):\n";
+    //     for (std::size_t i = 0; i < listeFilms.size(); i++)
+    //     {
+    //         outputStream << '\t' << *listeFilms[i] << '\n';
+    //     }
+    // }
+    for(auto& [genre, films] : gestionnaireFilms.filtreGenreFilms_)
     {
-        Film::Genre genre = it->first;
-        std::vector<const Film*> listeFilms = it->second;
-        outputStream << "Genre: " << getGenreString(genre) << " (" << listeFilms.size() << " films):\n";
-        for (std::size_t i = 0; i < listeFilms.size(); i++)
-        {
-            outputStream << '\t' << *listeFilms[i] << '\n';
-        }
+        //films est un std::vector<const Film*>
+        for(auto& film : films)
+            outputStream << '\t' << *film << '\n';
     }
     return outputStream;
 }
@@ -132,21 +138,22 @@ bool GestionnaireFilms::ajouterFilm(const Film& film)
 }
 
 //TODO
-bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
-{
-    //erreurs dans cette fonction
-    auto it = std::find_if(films_.begin(), films_.end(), 
-                            [&nomFilm](const std::unique_ptr<Film>& film){return film->nom == nomFilm;});
-    if(it != films_.end())
-    {
-        filtreNomFilms_.erase(nomFilm);
-        filtreGenreFilms_.erase(std::remove(filtreGenreFilms_.begin(), filtreGenreFilms_.end(), it->get()), filtreGenreFilms_.end());
-        filtrePaysFilms_.erase(std::remove(filtrePaysFilms_.begin(), filtrePaysFilms_.end(), it->get()), filtrePaysFilms_.end());
-        films_.erase(it);               //pas sur
-        return true;
-    }
-    return false;
-}
+//À terminer
+// bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
+// {
+//     //erreurs dans cette fonction
+//     auto it = std::find_if(films_.begin(), films_.end(), 
+//                             [&nomFilm](const std::unique_ptr<Film>& film){return film->nom == nomFilm;});
+//     if(it != films_.end())
+//     {
+//         filtreNomFilms_.erase(nomFilm);
+//         filtreGenreFilms_.erase(std::remove(filtreGenreFilms_.begin(), filtreGenreFilms_.end(), it->get()), filtreGenreFilms_.end());
+//         filtrePaysFilms_.erase(std::remove(filtrePaysFilms_.begin(), filtrePaysFilms_.end(), it->get()), filtrePaysFilms_.end());
+//         films_.erase(it);               //pas sur
+//         return true;
+//     }
+//     return false;
+// }
 
 //TODO
 std::size_t GestionnaireFilms::getNombreFilms() const
@@ -173,10 +180,11 @@ std::vector<const Film*> GestionnaireFilms::getFilmsParPays(Pays pays) const
 }
 
 //TODO
-std::vector<const Film*> GestionnaireFilms::getFilmsEntreAnnees(int anneeDebut, int anneeFin)
-{
-    //On n'a pas utilisé RawPointerBackInserter. FAUTE!
-    std::vector<const Film*> filmsAnnees;
-    copy_if(films_.begin(), films_.end(), filmsAnnees.begin(), EstDansIntervalleDatesFilm(anneeDebut, anneeFin));
-    return filmsAnnees;
-}
+//À terminer
+// std::vector<const Film*> GestionnaireFilms::getFilmsEntreAnnees(int anneeDebut, int anneeFin)
+// {
+//     //On n'a pas utilisé RawPointerBackInserter. FAUTE!
+//     std::vector<const Film*> filmsAnnees;
+//     copy_if(films_.begin(), films_.end(), filmsAnnees.begin(), EstDansIntervalleDatesFilm(anneeDebut, anneeFin));
+//     return filmsAnnees;
+// }

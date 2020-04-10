@@ -54,3 +54,37 @@ bool AnalyseurLogs::chargerDepuisFichier(const std::string& nomFichier,
     std::cerr << "Erreur AnalyseurLogs: le fichier " << nomFichier << " n'a pas pu être ouvert\n";
     return false;
 }
+
+//TODO
+bool AnalyseurLogs::creerLigneLog(const std::string& timestamp, const std::string& idUtilisateur, const std::string& nomFilm,
+                       GestionnaireUtilisateurs& gestionnaireUtilisateurs, GestionnaireFilms& gestionnaireFilms)
+{
+    //Nombre de lignes???
+    LigneLog lignelog = {timestamp, gestionnaireUtilisateurs.getUtilisateurParId(idUtilisateur), gestionnaireFilms.getFilmParNom(nomFilm)};
+    if(lignelog.film != nullptr && lignelog.utilisateur != nullptr)
+    {
+        ajouterLigneLog(lignelog);
+        return true;
+    }
+    return false;
+}
+
+//TODO
+void AnalyseurLogs::ajouterLigneLog(const LigneLog& ligneLog)
+{
+
+}
+
+//TODO
+int AnalyseurLogs::getNombreVuesFilm(const Film* film) const
+{
+    //Nombre de lignes 4???
+    return vuesFilms_.at(film);
+    //Une autre méthode serait: return vuesFilms_.find(film)->second; mais c'est plus lent,
+    //parce qu'il faut itérer à travers le unordered_map pour trouver un itérateur
+}
+
+// const Film* AnalyseurLogs::getFilmPlusPopulaire() const
+// {
+
+// }

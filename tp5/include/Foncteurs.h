@@ -5,6 +5,7 @@
 
 #include <string>
 #include <unordered_map>
+#include "LigneLog.h"
 
 //Il manque sûrement des includes
 
@@ -25,11 +26,10 @@ private:
 };
 
 class ComparateurLog
-#include "LigneLog.h"
 {
 public:
 	ComparateurLog();
-	bool operator()(LigneLog::LigneLog ligneLog1, LigneLog::LigneLog ligneLog2)
+	bool operator()(LigneLog ligneLog1, LigneLog ligneLog2)
 	{
 		return (ligneLog1.timestamp < ligneLog2.timestamp);
 	};
@@ -44,7 +44,7 @@ class ComparateurSecondElementPair
 		ComparateurSecondElementPair();
 		bool operator()(T1 pair1, T2 pair2)
             {
-                return (pair1.second<pair2.second )
+                return (pair1.second<pair2.second );
 			}
 };
 #endif
