@@ -279,7 +279,7 @@ namespace Tests
         EstDansIntervalleDatesFilm foncteurIntervalle(anneeInferieure, anneeSuperieure);
         bool estDansIntervalle1 = foncteurIntervalle(film1);
         bool estDansIntervalle2 = foncteurIntervalle(film2);
-        bool vIntervalle3 = foncteurIntervalle(film3);
+        bool estDansIntervalle3 = foncteurIntervalle(film3);
         bool estDansIntervalle4 = foncteurIntervalle(film4);
         bool estDansIntervalle5 = foncteurIntervalle(film5);
         bool estDansIntervalle6 = foncteurIntervalle(film6);
@@ -303,9 +303,9 @@ namespace Tests
         afficherResultatTest(2, "Foncteur ComparateurLog", tests.back());
 
         // Test 3
-        std::pair<std::string, int> pair1("First", 2);
+        std::pair<std::string, int> pair1("First", 2); 
         std::pair<std::string, int> pair2("First", 3);
-        const std::pair<std::string, int> pair3("First", 4);
+        const std::pair<std::string, int> pair3("First", 4); 
         ComparateurSecondElementPaire<std::string, int> foncteurComparateurSecondElementPaire;
         auto comparaisonPaire1 = foncteurComparateurSecondElementPaire(pair1, pair2);
         auto comparaisonPaire2 = foncteurComparateurSecondElementPaire(pair2, pair1);
@@ -393,11 +393,29 @@ namespace Tests
         const Film* pointeurFilm8 = gestionnaireFilms.getFilmParNom(film8.nom);
         const Film* pointeurFilm9 = gestionnaireFilms.getFilmParNom(film9.nom);
         std::vector<const Film*> filmsParGenre2 = gestionnaireFilms.getFilmsParGenre(Film::Genre::Drame);
-        std::vector<const Film*> filmsParGenre2Attendus = {pointeurFilm6, pointeurFilm7, pointeurFilm8, pointeurFilm9};
+
+
+         std::vector<const Film*> filmsParGenre2Attendus = {pointeurFilm6, pointeurFilm7, pointeurFilm8, pointeurFilm9};
+
+
         bool filmsParGenre2Valides = filmsParGenre2 == filmsParGenre2Attendus;
         gestionnaireFilms.supprimerFilm(film7.nom);
         std::vector<const Film*> filmsParGenre3 = gestionnaireFilms.getFilmsParGenre(Film::Genre::Drame);
+        //
+
+        std::cout << "\n" << "Films par genre 3:\n";
+        for(int i=0; i<filmsParGenre3.size(); i++)
+            std::cout << *(filmsParGenre3[i]) << "\n";
+
+        //
+
         std::vector<const Film*> filmsParGenre3Attendus = {pointeurFilm6, pointeurFilm8, pointeurFilm9};
+        //
+
+        std::cout << "\n" << "Films par genre attendu 3: \n";
+        for(int i=0; i<filmsParGenre3Attendus.size(); i++)
+            std::cout << *(filmsParGenre3Attendus[i]) << "\n";
+//
         bool filmsParGenre3Valides = filmsParGenre3 == filmsParGenre3Attendus;
         tests.push_back(filmsParGenre1.empty() && filmsParGenre2Valides && filmsParGenre3Valides);
         afficherResultatTest(5, "GestionnaireFilms::getFilmsParGenre", tests.back());

@@ -126,7 +126,7 @@ const Film* GestionnaireFilms::getFilmParNom(const std::string& nom) const
 //TODO
 bool GestionnaireFilms::ajouterFilm(const Film& film)
 {
-    if(getFilmParNom(film.nom)!=nullptr)
+    if(getFilmParNom(film.nom)==nullptr)
     {
         films_.push_back(std::make_unique<Film>(film));
         filtreNomFilms_.std::unordered_map<std::string, const Film*>::emplace(film.nom, films_.back().get());
@@ -152,10 +152,10 @@ bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
     {
         filtreNomFilms_.erase(nomFilm);
         std::vector<const Film*> filmsDuGenre = filtreGenreFilms_[it->get()->genre];
-        filmsDuGenre.erase(std::remove(filmsDuGenre.begin(), filmsDuGenre.end(), it->get()), filmsDuGenre.end());
+        filmsDuGenre.erase(std::remove(filmsDuGenre.begin(), filmsDuGenre.end(), it->get()/*[&nomFilm](const std::unique_ptr<Film>& film){return (nomFilm == film->nom);}*/), filmsDuGenre.end());
         std::vector<const Film*> filmsDuPays = filtrePaysFilms_[it->get()->pays];
         filmsDuPays.erase(std::remove(filmsDuPays.begin(), filmsDuPays.end(), it->get()), filmsDuPays.end());
-        films_.erase(it);               //pas sur
+        films_.erase(it);               
         return true;
     }
     return false;
@@ -171,8 +171,9 @@ std::size_t GestionnaireFilms::getNombreFilms() const
 std::vector<const Film*> GestionnaireFilms::getFilmsParGenre(Film::Genre genre) const
 {
     auto it = filtreGenreFilms_.find(genre);
-    if(it!=filtreGenreFilms_.end())
+    if(it!=filtreGenreFilms_.end()){
         return it->second;
+    }
     return std::vector<const Film*>();
 }
 

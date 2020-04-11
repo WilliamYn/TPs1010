@@ -20,7 +20,7 @@ std::ostream& operator<<(std::ostream& outputStream, const GestionnaireUtilisate
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
     for (const auto& [id, utilisateur] : gestionnaireUtilisateurs.utilisateurs_) {
-        outputStream<< id << '\t' << utilisateur << '\n';       //vérifier l'affichage
+        outputStream<< '\t' << utilisateur << '\n';       //vérifier l'affichage
     }
     return outputStream;
 

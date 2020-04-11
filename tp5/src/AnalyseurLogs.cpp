@@ -84,7 +84,7 @@ int AnalyseurLogs::getNombreVuesFilm(const Film* film) const
     //parce qu'il faut itérer à travers le unordered_map pour trouver un itérateur
 }
 
-// const Film* AnalyseurLogs::getFilmPlusPopulaire() const
-// {
+const Film* AnalyseurLogs::getFilmPlusPopulaire() const
+{
 
-// }
+}

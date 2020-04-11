@@ -28,7 +28,7 @@ private:
 class ComparateurLog
 {
 public:
-	ComparateurLog();
+	ComparateurLog(){};
 	bool operator()(LigneLog ligneLog1, LigneLog ligneLog2)
 	{
 		return (ligneLog1.timestamp < ligneLog2.timestamp);
@@ -36,15 +36,13 @@ public:
 };		
 
 template<class T1,class T2>
-class ComparateurSecondElementPair
+class ComparateurSecondElementPaire
 {
-	public:
-	    T1 first;
-		T2 second;
-		ComparateurSecondElementPair();
-		bool operator()(T1 pair1, T2 pair2)
-            {
-                return (pair1.second<pair2.second );
-			}
+public:
+	ComparateurSecondElementPaire(){};
+	bool operator()(const std::pair<T1, T2>& pair1 , const std::pair<T1, T2>& pair2)
+	{
+		return (pair1.second<pair2.second);
+	}
 };
 #endif
