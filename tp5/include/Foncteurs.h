@@ -33,7 +33,7 @@ public:
 	{
 		return (ligneLog1.timestamp < ligneLog2.timestamp);
 	};
-};		
+};
 
 template<class T1,class T2>
 class ComparateurSecondElementPaire

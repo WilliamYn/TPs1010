@@ -72,19 +72,26 @@ bool AnalyseurLogs::creerLigneLog(const std::string& timestamp, const std::strin
 //TODO
 void AnalyseurLogs::ajouterLigneLog(const LigneLog& ligneLog)
 {
-
+    
 }
 
 //TODO
 int AnalyseurLogs::getNombreVuesFilm(const Film* film) const
 {
-    //Nombre de lignes 4???
-    return vuesFilms_.at(film);
-    //Une autre méthode serait: return vuesFilms_.find(film)->second; mais c'est plus lent,
-    //parce qu'il faut itérer à travers le unordered_map pour trouver un itérateur
+    auto it = vuesFilms_.find(film);
+    if(it != vuesFilms_.end())
+        return it->second;
+    return 0;
 }
 
+//TODO
 const Film* AnalyseurLogs::getFilmPlusPopulaire() const
 {
 
+}
+
+//TODO
+std::vector<const Film*> AnalyseurLogs::getFilmsVusParUtilisateur(const Utilisateur* utilisateur) const
+{
+    
 }
