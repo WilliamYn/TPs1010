@@ -395,27 +395,15 @@ namespace Tests
         std::vector<const Film*> filmsParGenre2 = gestionnaireFilms.getFilmsParGenre(Film::Genre::Drame);
 
 
-         std::vector<const Film*> filmsParGenre2Attendus = {pointeurFilm6, pointeurFilm7, pointeurFilm8, pointeurFilm9};
+        std::vector<const Film*> filmsParGenre2Attendus = {pointeurFilm6, pointeurFilm7, pointeurFilm8, pointeurFilm9};
 
 
         bool filmsParGenre2Valides = filmsParGenre2 == filmsParGenre2Attendus;
         gestionnaireFilms.supprimerFilm(film7.nom);
         std::vector<const Film*> filmsParGenre3 = gestionnaireFilms.getFilmsParGenre(Film::Genre::Drame);
-        //
-
-        std::cout << "\n" << "Films par genre 3:\n";
-        for(int i=0; i<filmsParGenre3.size(); i++)
-            std::cout << *(filmsParGenre3[i]) << "\n";
-
-        //
 
         std::vector<const Film*> filmsParGenre3Attendus = {pointeurFilm6, pointeurFilm8, pointeurFilm9};
-        //
 
-        std::cout << "\n" << "Films par genre attendu 3: \n";
-        for(int i=0; i<filmsParGenre3Attendus.size(); i++)
-            std::cout << *(filmsParGenre3Attendus[i]) << "\n";
-//
         bool filmsParGenre3Valides = filmsParGenre3 == filmsParGenre3Attendus;
         tests.push_back(filmsParGenre1.empty() && filmsParGenre2Valides && filmsParGenre3Valides);
         afficherResultatTest(5, "GestionnaireFilms::getFilmsParGenre", tests.back());

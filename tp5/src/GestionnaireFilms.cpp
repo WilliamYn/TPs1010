@@ -46,7 +46,7 @@ GestionnaireFilms& GestionnaireFilms::operator=(GestionnaireFilms other)
 std::ostream& operator<<(std::ostream& outputStream, const GestionnaireFilms& gestionnaireFilms)
 {
     // TODO: Uncomment une fois que la fonction getNombreFilms est écrite
-    outputStream << "Le gestionnaire de films contient " // << gestionnaireFilms.getNombreFilms() << " films.\n"
+    outputStream << "Le gestionnaire de films contient "  << gestionnaireFilms.getNombreFilms() << " films.\n"
                  << "Affichage par catégories:\n";
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
@@ -64,6 +64,7 @@ std::ostream& operator<<(std::ostream& outputStream, const GestionnaireFilms& ge
     for(auto& [genre, films] : gestionnaireFilms.filtreGenreFilms_)
     {
         //films est un std::vector<const Film*>
+        outputStream << "Genre: " << getGenreString(genre) << " (" <<  films.size() << " films):\n";
         for(auto& film : films)
             outputStream << '\t' << *film << '\n';
     }
@@ -129,17 +130,12 @@ bool GestionnaireFilms::ajouterFilm(const Film& film)
     if(getFilmParNom(film.nom)==nullptr)
     {
         films_.push_back(std::make_unique<Film>(film));
-        filtreNomFilms_.std::unordered_map<std::string, const Film*>::emplace(film.nom, films_.back().get());
+        filtreNomFilms_.emplace(film.nom, films_.back().get());
         filtreGenreFilms_[film.genre].push_back(films_.back().get());
         filtrePaysFilms_[film.pays].push_back(films_.back().get());
         return true;
     }
     return false;
-}
-
-bool IsODD(int i)
-{
-    return (i%2 == 1);
 }
 
 //TODO
@@ -151,9 +147,9 @@ bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
     if(it != films_.end())
     {
         filtreNomFilms_.erase(nomFilm);
-        std::vector<const Film*> filmsDuGenre = filtreGenreFilms_[it->get()->genre];
-        filmsDuGenre.erase(std::remove(filmsDuGenre.begin(), filmsDuGenre.end(), it->get()/*[&nomFilm](const std::unique_ptr<Film>& film){return (nomFilm == film->nom);}*/), filmsDuGenre.end());
-        std::vector<const Film*> filmsDuPays = filtrePaysFilms_[it->get()->pays];
+        std::vector<const Film*>& filmsDuGenre = filtreGenreFilms_[(*it)->genre];
+        filmsDuGenre.erase(std::remove(filmsDuGenre.begin(), filmsDuGenre.end(), it->get()), filmsDuGenre.end());
+        std::vector<const Film*>& filmsDuPays = filtrePaysFilms_[(*it)->pays];
         filmsDuPays.erase(std::remove(filmsDuPays.begin(), filmsDuPays.end(), it->get()), filmsDuPays.end());
         films_.erase(it);               
         return true;
