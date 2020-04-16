@@ -71,8 +71,13 @@ bool AnalyseurLogs::creerLigneLog(const std::string& timestamp, const std::strin
 
 //TODO
 void AnalyseurLogs::ajouterLigneLog(const LigneLog& ligneLog)
+   // on va utiliser ici les Binary search operations (on sorted ranges)
 {
-    
+   // binary_search
+   auto estTrouve = std::upper_bound(logs_.begin(),logs_.end(),lignelog, ComparateurLog());
+    logs_.insert(estTrouve, ligneLog);
+    vuesFilms_[ligneLog.film]++;
+
 }
 
 //TODO
