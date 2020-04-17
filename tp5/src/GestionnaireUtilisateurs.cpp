@@ -2,6 +2,11 @@
 /// \author Misha Krieger-Raynauld
 /// \date 2020-01-12
 
+/// \author         william younanian   2022401
+///                 jean paul khoueiry 2011397
+/// \date           18 avril 2020
+/// \file           GestionnaireUtilisateurs.cpp
+
 #include "GestionnaireUtilisateurs.h"
 #include <fstream>
 #include <iomanip>
@@ -20,20 +25,9 @@ std::ostream& operator<<(std::ostream& outputStream, const GestionnaireUtilisate
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
     for (const auto& [id, utilisateur] : gestionnaireUtilisateurs.utilisateurs_) {
-        outputStream<< '\t' << utilisateur << '\n';       //vérifier l'affichage
+        outputStream<< '\t' << utilisateur << '\n';
     }
     return outputStream;
-
-    //Boucle au départ:
-    /*
-    for (auto it = gestionnaireUtilisateurs.utilisateurs_.cbegin();
-         it != gestionnaireUtilisateurs.utilisateurs_.cend();
-         ++it)
-    {
-        outputStream << '\t' << it->second << '\n';
-    }
-    return outputStream;
-    */
 }
 
 /// Ajoute les utilisateurs à partir d'un fichier de données d'utilisateurs.
@@ -77,6 +71,9 @@ bool GestionnaireUtilisateurs::chargerDepuisFichier(const std::string& nomFichie
 }
 
 //TODO
+/// Ajoute un utilisateur au gestionnaire, en l’insérant dans la map avec son ID comme clé et l’utilisateur comme valeur
+/// \param utilisateur  L'utilisateur a afficher
+/// \return             True si l’utilisateur a été ajouté avec succès, false si l’utilisateur n’a pas pu être ajouté puisque son ID était déjà présent dans la map
 bool GestionnaireUtilisateurs::ajouterUtilisateur(const Utilisateur& utilisateur)
 //"prénom.nom.1@email.com", "Prénom Nom", 20, Pays::Canada
 {
@@ -84,18 +81,29 @@ bool GestionnaireUtilisateurs::ajouterUtilisateur(const Utilisateur& utilisateur
 }
 
 //TODO
+/// Supprime un utilisateur du gestionnaire à partir de son ID
+/// \param utilisateur  L'utilisateur a afficher
+/// \return             True si l’utilisateur a été trouvé et supprimé avec succès, false si
+///                     l’utilisateur n’a pas pu être supprimé puisque son ID n’était pas déjà présent dans
+///                     la map.
 bool GestionnaireUtilisateurs::supprimerUtilisateur(const std::string& idUtilisateur)
 {
 	return  utilisateurs_.unordered_map<std::string, Utilisateur>::erase(idUtilisateur);
 }
 
 //TODO
+/// Retourne le nombre d’utilisateurs présentement dans le gestionnaire.
+/// \return            Le nombre d’utilisateurs présentement dans le gestionnaire.
 std::size_t GestionnaireUtilisateurs::getNombreUtilisateurs() const
 {
     return utilisateurs_.size();
 }
 
 //TODO
+/// Trouve et retourne un utilisateur en le cherchant à partir de son ID
+/// \param utilisateur  L'utilisateur a afficher
+/// \return             un pointeur vers l’utilisateur ou nullptr si aucun utilisateur avec le ID
+///                     ne peut être trouvé.
 const Utilisateur* GestionnaireUtilisateurs::getUtilisateurParId(const std::string& id) const
 {
 	auto it = utilisateurs_.find(id);

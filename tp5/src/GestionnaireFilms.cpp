@@ -2,6 +2,11 @@
 /// \author Misha Krieger-Raynauld
 /// \date 2020-01-12
 
+/// \author         william younanian   2022401
+///                 jean paul khoueiry 2011397
+/// \date           18 avril 2020
+/// \file           GestionnaireFilms.cpp
+
 #include "GestionnaireFilms.h"
 #include <algorithm>
 #include <fstream>
@@ -50,17 +55,6 @@ std::ostream& operator<<(std::ostream& outputStream, const GestionnaireFilms& ge
                  << "Affichage par catégories:\n";
 
     // TODO: Réécrire l'implémentation avec des range-based for et structured bindings (voir énoncé du TP)
-    // for (auto it = gestionnaireFilms.filtreGenreFilms_.cbegin(); it != gestionnaireFilms.filtreGenreFilms_.cend();
-    //         ++it)
-    // {
-    //     Film::Genre genre = it->first;
-    //     std::vector<const Film*> listeFilms = it->second;
-    //     outputStream << "Genre: " << getGenreString(genre) << " (" << listeFilms.size() << " films):\n";
-    //     for (std::size_t i = 0; i < listeFilms.size(); i++)
-    //     {
-    //         outputStream << '\t' << *listeFilms[i] << '\n';
-    //     }
-    // }
     for(auto& [genre, films] : gestionnaireFilms.filtreGenreFilms_)
     {
         //films est un std::vector<const Film*>
@@ -116,6 +110,9 @@ bool GestionnaireFilms::chargerDepuisFichier(const std::string& nomFichier)
 }
 
 //TODO
+/// Méthode qui trouve un film avec un nom de film passé en paramètre
+/// \ param nom             Nom du film
+/// \ return                Un pointeur constant au film
 const Film* GestionnaireFilms::getFilmParNom(const std::string& nom) const
 {
     auto it = filtreNomFilms_.find(nom);
@@ -125,6 +122,9 @@ const Film* GestionnaireFilms::getFilmParNom(const std::string& nom) const
 }
 
 //TODO
+/// Méthode qui ajoute un film à l'attribut films_ de la classe et l'ajoute aux filtres
+/// \ param film            Le film à ajouter
+/// \ return                Un bool représentant si l'ajout a été fait
 bool GestionnaireFilms::ajouterFilm(const Film& film)
 {
     if(getFilmParNom(film.nom)==nullptr)
@@ -139,9 +139,11 @@ bool GestionnaireFilms::ajouterFilm(const Film& film)
 }
 
 //TODO
+/// Méthode qui supprime un film de l'attribut films_ de la classe et l'enlève des filtres
+/// \ param nomFilm                 Le nom du film à enlever
+/// \ return                        Un bool représentant si la suppression a été faite avec succès
 bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
 {
-    //pas sur de l'implémentation pour les filtres de genre et pays. Peut-être utiliser un remove_if?
     auto it = std::find_if(films_.begin(), films_.end(), 
                             [&nomFilm](const std::unique_ptr<Film>& film){return film->nom == nomFilm;});
     if(it != films_.end())
@@ -158,12 +160,17 @@ bool GestionnaireFilms::supprimerFilm(const std::string& nomFilm)
 }
 
 //TODO
+/// Méthode qui trouve le nobmre de films
+/// \ return                le nombre de films
 std::size_t GestionnaireFilms::getNombreFilms() const
 {
     return films_.size();
 }
 
 //TODO
+/// Méthode qui trouve les films pour un genre donné
+/// \ param genre               Le genre des films recherchés
+/// \ return                    Un vecteur de pointeurs constants des films de ce genre
 std::vector<const Film*> GestionnaireFilms::getFilmsParGenre(Film::Genre genre) const
 {
     auto it = filtreGenreFilms_.find(genre);
@@ -174,6 +181,9 @@ std::vector<const Film*> GestionnaireFilms::getFilmsParGenre(Film::Genre genre) 
 }
 
 //TODO
+/// Méthode qui trouve les films pour un pays donné
+/// \ param genre               Le pays des films recherchés
+/// \ return                    Un vecteur de pointeurs constants des films de ce pays
 std::vector<const Film*> GestionnaireFilms::getFilmsParPays(Pays pays) const
 {
     auto it = filtrePaysFilms_.find(pays);
@@ -183,6 +193,10 @@ std::vector<const Film*> GestionnaireFilms::getFilmsParPays(Pays pays) const
 }
 
 //TODO
+/// Méthode qui trouve les films réalisés dans un intervalle de temps
+/// \ param anneeDebut          Année de début de l'intervalle
+/// \ param anneeFin            Année de fin de l'intervalle
+/// \ return                    Un vecteur de pointeurs constants des films réalisées entre ces années
 std::vector<const Film*> GestionnaireFilms::getFilmsEntreAnnees(int anneeDebut, int anneeFin)
 {
     std::vector<const Film*> filmsAnnees;

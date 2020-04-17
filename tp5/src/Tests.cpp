@@ -1,4 +1,4 @@
-/// Tests automatiss.
+/// Tests automatisés.
 /// \author Misha Krieger-Raynauld
 /// \date 2020-03-04
 
@@ -16,25 +16,25 @@
 
 namespace
 {
-    /// Affiche un header pour chaque section de tests  l'cran.
+    /// Affiche un header pour chaque section de tests à l'écran.
     /// \param nomSectionTest   Le nom de la section de tests.
     void afficherHeaderTest(const std::string& nomSectionTest)
     {
         std::cout << "\nTests pour " + nomSectionTest + ":\n--------\n";
     }
 
-    /// Affiche un footer avec les points pour chaque section de tests  l'cran.
-    /// \param totalPoints  Le nombre de points obtenus  la section de tests.
-    /// \param maxPoints    Le nombre de points maximal allous  la section de tests.
+    /// Affiche un footer avec les points pour chaque section de tests à l'écran.
+    /// \param totalPoints  Le nombre de points obtenus à la section de tests.
+    /// \param maxPoints    Le nombre de points maximal alloués à la section de tests.
     void afficherFooterTest(double totalPoints, double maxPoints)
     {
         std::cout << "--------\nTotal pour la section: " << totalPoints << "/" << maxPoints << '\n';
     }
 
-    /// Affiche le nom d'un test ainsi que son tat de passage  l'cran.
+    /// Affiche le nom d'un test ainsi que son état de passage à l'écran.
     /// \param index        L'index du test.
     /// \param nom          Le nom du test.
-    /// \param estReussi    L'tat de passage du test.
+    /// \param estReussi    L'état de passage du test.
     void afficherResultatTest(int index, const std::string& nom, bool estReussi)
     {
         static constexpr int largeurNumeroTest = 2;
@@ -46,7 +46,7 @@ namespace
 
 namespace Tests
 {
-    /// Appelle tous les tests et affiche la somme de ceux-ci  l'cran.
+    /// Appelle tous les tests et affiche la somme de ceux-ci à l'écran.
     void testAll()
     {
         static constexpr double maxPointsAll = 6.0;
@@ -73,8 +73,8 @@ namespace Tests
         GestionnaireUtilisateurs gestionnaireUtilisateurs;
 
         // Test 1
-        Utilisateur utilisateur1{"prnom.nom.1@email.com", "Prnom Nom", 20, Pays::Canada};
-        Utilisateur utilisateur2{"prnom.nom.2@email.com", "Prnom Nom", 20, Pays::Canada};
+        Utilisateur utilisateur1{"prénom.nom.1@email.com", "Prénom Nom", 20, Pays::Canada};
+        Utilisateur utilisateur2{"prénom.nom.2@email.com", "Prénom Nom", 20, Pays::Canada};
         bool ajout1 = gestionnaireUtilisateurs.ajouterUtilisateur(utilisateur1);
         bool ajout2 = gestionnaireUtilisateurs.ajouterUtilisateur(utilisateur1);
         bool ajout3 = gestionnaireUtilisateurs.ajouterUtilisateur(utilisateur2);
@@ -82,7 +82,7 @@ namespace Tests
         afficherResultatTest(1, "GestionnaireUtilisateurs::ajouterUtilisateur", tests.back());
 
         // Test 2
-        Utilisateur utilisateur3{"prnom.nom.3@email.com", "Prnom Nom", 20, Pays::Canada};
+        Utilisateur utilisateur3{"prénom.nom.3@email.com", "Prénom Nom", 20, Pays::Canada};
         bool suppression1 = gestionnaireUtilisateurs.supprimerUtilisateur(utilisateur1.id);
         bool suppression2 = gestionnaireUtilisateurs.supprimerUtilisateur(utilisateur1.id);
         bool suppression3 = gestionnaireUtilisateurs.supprimerUtilisateur(utilisateur2.id);
@@ -100,8 +100,8 @@ namespace Tests
         afficherResultatTest(3, "GestionnaireUtilisateurs::getNombreUtilisateurs", tests.back());
 
         // Test 4
-        Utilisateur utilisateur4{"prnom.nom.4@email.com", "PrnomUnique NomUnique", 30, Pays::EtatsUnis};
-        Utilisateur utilisateur5{"prnom.nom.5@email.com", "Prnom Nom", 20, Pays::Canada};
+        Utilisateur utilisateur4{"prénom.nom.4@email.com", "PrénomUnique NomUnique", 30, Pays::EtatsUnis};
+        Utilisateur utilisateur5{"prénom.nom.5@email.com", "Prénom Nom", 20, Pays::Canada};
         gestionnaireUtilisateurs.ajouterUtilisateur(utilisateur4);
         const Utilisateur* utilisateurTrouve1 = gestionnaireUtilisateurs.getUtilisateurParId(utilisateur4.id);
         bool utilisateurTrouve1EstIdentique =
@@ -133,106 +133,106 @@ namespace Tests
         }
         static const std::string sortieAttendue =
             "Le gestionnaire d'utilisateurs contient 100 utilisateurs:\n"
-            "\tIdentifiant: akoblin@optonline.net | Nom: Marnie Melvin | ge: 37 | Pays: Chine\n"
-            "\tIdentifiant: alhajj@mac.com | Nom: Toccara Patino | ge: 65 | Pays: Canada\n"
-            "\tIdentifiant: andrei@hotmail.com | Nom: Armanda Hooper | ge: 11 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: animats@sbcglobal.net | Nom: Nickole Montero | ge: 91 | Pays: Mexique\n"
-            "\tIdentifiant: augusto@verizon.net | Nom: Rhett Sargent | ge: 15 | Pays: Mexique\n"
-            "\tIdentifiant: barjam@sbcglobal.net | Nom: Kennith Doan | ge: 69 | Pays: tats-Unis\n"
-            "\tIdentifiant: bartak@outlook.com | Nom: Eli Burdette | ge: 86 | Pays: Russie\n"
-            "\tIdentifiant: bebing@mac.com | Nom: Rupert Irvine | ge: 9 | Pays: Mexique\n"
-            "\tIdentifiant: bester@optonline.net | Nom: Margherita Noland | ge: 50 | Pays: tats-Unis\n"
-            "\tIdentifiant: bsikdar@gmail.com | Nom: Emerald Stubbs | ge: 5 | Pays: France\n"
-            "\tIdentifiant: cantu@optonline.net | Nom: Amberly Bohannon | ge: 99 | Pays: Brsil\n"
-            "\tIdentifiant: carreras@mac.com | Nom: Roma Greco | ge: 29 | Pays: Mexique\n"
-            "\tIdentifiant: chaffar@live.com | Nom: Babara Guerin | ge: 52 | Pays: Russie\n"
-            "\tIdentifiant: claypool@aol.com | Nom: Hilton Coles | ge: 90 | Pays: Mexique\n"
-            "\tIdentifiant: codex@mac.com | Nom: Stan Durand | ge: 3 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: cosimo@live.com | Nom: Ilana Cervantes | ge: 71 | Pays: Canada\n"
-            "\tIdentifiant: cremonini@verizon.net | Nom: Truman Sawyer | ge: 20 | Pays: Mexique\n"
-            "\tIdentifiant: danzigism@att.net | Nom: Masako Shipp | ge: 44 | Pays: Chine\n"
-            "\tIdentifiant: dawnsong@icloud.com | Nom: Stephine Jamison | ge: 16 | Pays: Canada\n"
-            "\tIdentifiant: denton@me.com | Nom: Vashti Snipes | ge: 80 | Pays: Canada\n"
-            "\tIdentifiant: dinther@me.com | Nom: Deetta Edmond | ge: 94 | Pays: Chine\n"
-            "\tIdentifiant: dkrishna@att.net | Nom: Shirely Kenney | ge: 100 | Pays: Canada\n"
-            "\tIdentifiant: dmouse@mac.com | Nom: Marlin Mcgregor | ge: 51 | Pays: Chine\n"
-            "\tIdentifiant: dogdude@icloud.com | Nom: Renetta Camarillo | ge: 8 | Pays: Japon\n"
-            "\tIdentifiant: dsowsy@yahoo.com | Nom: Angla Corrigan | ge: 37 | Pays: Mexique\n"
-            "\tIdentifiant: dvdotnet@yahoo.ca | Nom: Shirlee Keating | ge: 82 | Pays: Canada\n"
-            "\tIdentifiant: facet@verizon.net | Nom: Charisse Beckman | ge: 73 | Pays: France\n"
-            "\tIdentifiant: falcao@verizon.net | Nom: Breanne Hawley | ge: 86 | Pays: Brsil\n"
-            "\tIdentifiant: fatelk@comcast.net | Nom: Gay Shuler | ge: 71 | Pays: tats-Unis\n"
-            "\tIdentifiant: frode@sbcglobal.net | Nom: Lane Britton | ge: 25 | Pays: Brsil\n"
-            "\tIdentifiant: froodian@mac.com | Nom: Florrie Carmichael | ge: 50 | Pays: Brsil\n"
-            "\tIdentifiant: fwitness@gmail.com | Nom: Arlinda Murillo | ge: 62 | Pays: Japon\n"
-            "\tIdentifiant: gomor@optonline.net | Nom: Earlie Portillo | ge: 57 | Pays: tats-Unis\n"
-            "\tIdentifiant: gravyface@live.com | Nom: Euna Spinks | ge: 49 | Pays: Canada\n"
-            "\tIdentifiant: grdschl@icloud.com | Nom: Lavenia Beach | ge: 10 | Pays: Mexique\n"
-            "\tIdentifiant: gward@sbcglobal.net | Nom: Rocco Lacroix | ge: 76 | Pays: Russie\n"
-            "\tIdentifiant: ijackson@gmail.com | Nom: Seymour Knudson | ge: 28 | Pays: Japon\n"
-            "\tIdentifiant: ivoibs@yahoo.ca | Nom: Louanne Bellamy | ge: 83 | Pays: Russie\n"
-            "\tIdentifiant: ivoibs@yahoo.com | Nom: Jenise Oates | ge: 45 | Pays: Russie\n"
-            "\tIdentifiant: jdhedden@mac.com | Nom: Meghann Cope | ge: 80 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: jespley@me.com | Nom: Marylouise Otero | ge: 26 | Pays: France\n"
-            "\tIdentifiant: jfinke@comcast.net | Nom: Mara Yarbrough | ge: 68 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: jkegl@verizon.net | Nom: Retta Wheatley | ge: 91 | Pays: Brsil\n"
-            "\tIdentifiant: kalpol@icloud.com | Nom: Chaya Massie | ge: 21 | Pays: Mexique\n"
-            "\tIdentifiant: karasik@hotmail.com | Nom: Luis Noe | ge: 18 | Pays: tats-Unis\n"
-            "\tIdentifiant: karasik@msn.com | Nom: Carman Gipson | ge: 97 | Pays: Russie\n"
-            "\tIdentifiant: klaudon@hotmail.com | Nom: Salena Christy | ge: 39 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: kobayasi@yahoo.com | Nom: Lindsay Lamar | ge: 44 | Pays: France\n"
-            "\tIdentifiant: kourai@verizon.net | Nom: Kendall Dias | ge: 84 | Pays: Chine\n"
-            "\tIdentifiant: kramulous@aol.com | Nom: Shizuko Beltran | ge: 48 | Pays: Brsil\n"
-            "\tIdentifiant: kwilliams@msn.com | Nom: Emmanuel Mcwhorter | ge: 31 | Pays: Japon\n"
-            "\tIdentifiant: leakin@yahoo.ca | Nom: Gita Stitt | ge: 72 | Pays: Russie\n"
-            "\tIdentifiant: linuxhack@yahoo.com | Nom: Lennie Hatley | ge: 43 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: mastinfo@live.com | Nom: Echo Shumate | ge: 41 | Pays: tats-Unis\n"
-            "\tIdentifiant: mbswan@optonline.net | Nom: Pattie Delgadillo | ge: 84 | Pays: Canada\n"
-            "\tIdentifiant: mcraigw@verizon.net | Nom: Anjanette Seitz | ge: 58 | Pays: France\n"
-            "\tIdentifiant: mcsporran@yahoo.ca | Nom: Anya Baez | ge: 73 | Pays: Canada\n"
-            "\tIdentifiant: melnik@aol.com | Nom: Isiah Peralta | ge: 50 | Pays: Canada\n"
-            "\tIdentifiant: mfburgo@live.com | Nom: Jaimee Chester | ge: 36 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: mglee@outlook.com | Nom: Sharron Parson | ge: 67 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: mlewan@hotmail.com | Nom: Tambra Wilbanks | ge: 59 | Pays: Russie\n"
-            "\tIdentifiant: moonlapse@msn.com | Nom: Verdell Reichert | ge: 25 | Pays: Chine\n"
-            "\tIdentifiant: mrobshaw@outlook.com | Nom: Joella Sparkman | ge: 43 | Pays: Brsil\n"
-            "\tIdentifiant: mschwartz@verizon.net | Nom: Lilly Valles | ge: 84 | Pays: Brsil\n"
-            "\tIdentifiant: mxiao@verizon.net | Nom: Marla Dempsey | ge: 39 | Pays: tats-Unis\n"
-            "\tIdentifiant: notaprguy@verizon.net | Nom: Kacie Heflin | ge: 80 | Pays: Canada\n"
-            "\tIdentifiant: noticias@optonline.net | Nom: Adelaide Blank | ge: 10 | Pays: Canada\n"
-            "\tIdentifiant: pajas@comcast.net | Nom: Eldora Schaffer | ge: 66 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: pakaste@gmail.com | Nom: Corazon Toliver | ge: 2 | Pays: France\n"
-            "\tIdentifiant: paley@msn.com | Nom: Magan Messer | ge: 57 | Pays: France\n"
-            "\tIdentifiant: parksh@msn.com | Nom: Alden Tyner | ge: 21 | Pays: Chine\n"
-            "\tIdentifiant: pdbaby@msn.com | Nom: Chas Spain | ge: 27 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: philb@yahoo.ca | Nom: Hildred Fernandes | ge: 89 | Pays: Chine\n"
-            "\tIdentifiant: philen@msn.com | Nom: Gaston Hundley | ge: 2 | Pays: Chine\n"
-            "\tIdentifiant: plover@outlook.com | Nom: Julianne Sasser | ge: 87 | Pays: Brsil\n"
-            "\tIdentifiant: policies@yahoo.com | Nom: Fatimah Teal | ge: 2 | Pays: Brsil\n"
-            "\tIdentifiant: quinn@comcast.net | Nom: Lashell Bower | ge: 54 | Pays: Russie\n"
-            "\tIdentifiant: rasca@msn.com | Nom: Donnette Crawley | ge: 76 | Pays: Canada\n"
-            "\tIdentifiant: rddesign@me.com | Nom: Chanel Arevalo | ge: 30 | Pays: Mexique\n"
-            "\tIdentifiant: rgarton@att.net | Nom: Christiana Alves | ge: 82 | Pays: France\n"
-            "\tIdentifiant: rgiersig@live.com | Nom: Pierre Mcnabb | ge: 28 | Pays: Chine\n"
-            "\tIdentifiant: scottlee@att.net | Nom: Kiley Tang | ge: 1 | Pays: Japon\n"
-            "\tIdentifiant: sharon@icloud.com | Nom: Karine Herrington | ge: 97 | Pays: Canada\n"
-            "\tIdentifiant: singh@me.com | Nom: Tanika Weston | ge: 76 | Pays: Canada\n"
-            "\tIdentifiant: snunez@optonline.net | Nom: Mitchel Brandt | ge: 2 | Pays: tats-Unis\n"
-            "\tIdentifiant: sopwith@hotmail.com | Nom: Russ Humphries | ge: 98 | Pays: France\n"
-            "\tIdentifiant: srour@me.com | Nom: Johnetta Adler | ge: 72 | Pays: Chine\n"
-            "\tIdentifiant: srour@verizon.net | Nom: Cyndi Marino | ge: 42 | Pays: Russie\n"
-            "\tIdentifiant: staikos@optonline.net | Nom: Christinia Rousseau | ge: 14 | Pays: Mexique\n"
-            "\tIdentifiant: temmink@att.net | Nom: Tracee Boyer | ge: 97 | Pays: tats-Unis\n"
-            "\tIdentifiant: thrymm@aol.com | Nom: Olin Staton | ge: 58 | Pays: Chine\n"
-            "\tIdentifiant: tlinden@outlook.com | Nom: Thu Doughty | ge: 22 | Pays: Canada\n"
-            "\tIdentifiant: trieuvan@att.net | Nom: Mariana Pfeiffer | ge: 85 | Pays: Chine\n"
-            "\tIdentifiant: tubajon@live.com | Nom: Irish Gilmore | ge: 21 | Pays: tats-Unis\n"
-            "\tIdentifiant: unreal@aol.com | Nom: Necole Johansen | ge: 80 | Pays: Royaume-Uni\n"
-            "\tIdentifiant: wainwrig@aol.com | Nom: Danyelle Craddock | ge: 16 | Pays: Chine\n"
-            "\tIdentifiant: wetter@yahoo.com | Nom: Mignon Haag | ge: 69 | Pays: Canada\n"
-            "\tIdentifiant: wikinerd@icloud.com | Nom: Georgetta Aquino | ge: 10 | Pays: Japon\n"
-            "\tIdentifiant: wortmanj@me.com | Nom: Bernie Napier | ge: 1 | Pays: France\n"
-            "\tIdentifiant: zyghom@yahoo.com | Nom: Easter Findley | ge: 74 | Pays: Japon\n";
+            "\tIdentifiant: akoblin@optonline.net | Nom: Marnie Melvin | Âge: 37 | Pays: Chine\n"
+            "\tIdentifiant: alhajj@mac.com | Nom: Toccara Patino | Âge: 65 | Pays: Canada\n"
+            "\tIdentifiant: andrei@hotmail.com | Nom: Armanda Hooper | Âge: 11 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: animats@sbcglobal.net | Nom: Nickole Montero | Âge: 91 | Pays: Mexique\n"
+            "\tIdentifiant: augusto@verizon.net | Nom: Rhett Sargent | Âge: 15 | Pays: Mexique\n"
+            "\tIdentifiant: barjam@sbcglobal.net | Nom: Kennith Doan | Âge: 69 | Pays: États-Unis\n"
+            "\tIdentifiant: bartak@outlook.com | Nom: Eli Burdette | Âge: 86 | Pays: Russie\n"
+            "\tIdentifiant: bebing@mac.com | Nom: Rupert Irvine | Âge: 9 | Pays: Mexique\n"
+            "\tIdentifiant: bester@optonline.net | Nom: Margherita Noland | Âge: 50 | Pays: États-Unis\n"
+            "\tIdentifiant: bsikdar@gmail.com | Nom: Emerald Stubbs | Âge: 5 | Pays: France\n"
+            "\tIdentifiant: cantu@optonline.net | Nom: Amberly Bohannon | Âge: 99 | Pays: Brésil\n"
+            "\tIdentifiant: carreras@mac.com | Nom: Roma Greco | Âge: 29 | Pays: Mexique\n"
+            "\tIdentifiant: chaffar@live.com | Nom: Babara Guerin | Âge: 52 | Pays: Russie\n"
+            "\tIdentifiant: claypool@aol.com | Nom: Hilton Coles | Âge: 90 | Pays: Mexique\n"
+            "\tIdentifiant: codex@mac.com | Nom: Stan Durand | Âge: 3 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: cosimo@live.com | Nom: Ilana Cervantes | Âge: 71 | Pays: Canada\n"
+            "\tIdentifiant: cremonini@verizon.net | Nom: Truman Sawyer | Âge: 20 | Pays: Mexique\n"
+            "\tIdentifiant: danzigism@att.net | Nom: Masako Shipp | Âge: 44 | Pays: Chine\n"
+            "\tIdentifiant: dawnsong@icloud.com | Nom: Stephine Jamison | Âge: 16 | Pays: Canada\n"
+            "\tIdentifiant: denton@me.com | Nom: Vashti Snipes | Âge: 80 | Pays: Canada\n"
+            "\tIdentifiant: dinther@me.com | Nom: Deetta Edmond | Âge: 94 | Pays: Chine\n"
+            "\tIdentifiant: dkrishna@att.net | Nom: Shirely Kenney | Âge: 100 | Pays: Canada\n"
+            "\tIdentifiant: dmouse@mac.com | Nom: Marlin Mcgregor | Âge: 51 | Pays: Chine\n"
+            "\tIdentifiant: dogdude@icloud.com | Nom: Renetta Camarillo | Âge: 8 | Pays: Japon\n"
+            "\tIdentifiant: dsowsy@yahoo.com | Nom: Angla Corrigan | Âge: 37 | Pays: Mexique\n"
+            "\tIdentifiant: dvdotnet@yahoo.ca | Nom: Shirlee Keating | Âge: 82 | Pays: Canada\n"
+            "\tIdentifiant: facet@verizon.net | Nom: Charisse Beckman | Âge: 73 | Pays: France\n"
+            "\tIdentifiant: falcao@verizon.net | Nom: Breanne Hawley | Âge: 86 | Pays: Brésil\n"
+            "\tIdentifiant: fatelk@comcast.net | Nom: Gay Shuler | Âge: 71 | Pays: États-Unis\n"
+            "\tIdentifiant: frode@sbcglobal.net | Nom: Lane Britton | Âge: 25 | Pays: Brésil\n"
+            "\tIdentifiant: froodian@mac.com | Nom: Florrie Carmichael | Âge: 50 | Pays: Brésil\n"
+            "\tIdentifiant: fwitness@gmail.com | Nom: Arlinda Murillo | Âge: 62 | Pays: Japon\n"
+            "\tIdentifiant: gomor@optonline.net | Nom: Earlie Portillo | Âge: 57 | Pays: États-Unis\n"
+            "\tIdentifiant: gravyface@live.com | Nom: Euna Spinks | Âge: 49 | Pays: Canada\n"
+            "\tIdentifiant: grdschl@icloud.com | Nom: Lavenia Beach | Âge: 10 | Pays: Mexique\n"
+            "\tIdentifiant: gward@sbcglobal.net | Nom: Rocco Lacroix | Âge: 76 | Pays: Russie\n"
+            "\tIdentifiant: ijackson@gmail.com | Nom: Seymour Knudson | Âge: 28 | Pays: Japon\n"
+            "\tIdentifiant: ivoibs@yahoo.ca | Nom: Louanne Bellamy | Âge: 83 | Pays: Russie\n"
+            "\tIdentifiant: ivoibs@yahoo.com | Nom: Jenise Oates | Âge: 45 | Pays: Russie\n"
+            "\tIdentifiant: jdhedden@mac.com | Nom: Meghann Cope | Âge: 80 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: jespley@me.com | Nom: Marylouise Otero | Âge: 26 | Pays: France\n"
+            "\tIdentifiant: jfinke@comcast.net | Nom: Mara Yarbrough | Âge: 68 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: jkegl@verizon.net | Nom: Retta Wheatley | Âge: 91 | Pays: Brésil\n"
+            "\tIdentifiant: kalpol@icloud.com | Nom: Chaya Massie | Âge: 21 | Pays: Mexique\n"
+            "\tIdentifiant: karasik@hotmail.com | Nom: Luis Noe | Âge: 18 | Pays: États-Unis\n"
+            "\tIdentifiant: karasik@msn.com | Nom: Carman Gipson | Âge: 97 | Pays: Russie\n"
+            "\tIdentifiant: klaudon@hotmail.com | Nom: Salena Christy | Âge: 39 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: kobayasi@yahoo.com | Nom: Lindsay Lamar | Âge: 44 | Pays: France\n"
+            "\tIdentifiant: kourai@verizon.net | Nom: Kendall Dias | Âge: 84 | Pays: Chine\n"
+            "\tIdentifiant: kramulous@aol.com | Nom: Shizuko Beltran | Âge: 48 | Pays: Brésil\n"
+            "\tIdentifiant: kwilliams@msn.com | Nom: Emmanuel Mcwhorter | Âge: 31 | Pays: Japon\n"
+            "\tIdentifiant: leakin@yahoo.ca | Nom: Gita Stitt | Âge: 72 | Pays: Russie\n"
+            "\tIdentifiant: linuxhack@yahoo.com | Nom: Lennie Hatley | Âge: 43 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: mastinfo@live.com | Nom: Echo Shumate | Âge: 41 | Pays: États-Unis\n"
+            "\tIdentifiant: mbswan@optonline.net | Nom: Pattie Delgadillo | Âge: 84 | Pays: Canada\n"
+            "\tIdentifiant: mcraigw@verizon.net | Nom: Anjanette Seitz | Âge: 58 | Pays: France\n"
+            "\tIdentifiant: mcsporran@yahoo.ca | Nom: Anya Baez | Âge: 73 | Pays: Canada\n"
+            "\tIdentifiant: melnik@aol.com | Nom: Isiah Peralta | Âge: 50 | Pays: Canada\n"
+            "\tIdentifiant: mfburgo@live.com | Nom: Jaimee Chester | Âge: 36 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: mglee@outlook.com | Nom: Sharron Parson | Âge: 67 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: mlewan@hotmail.com | Nom: Tambra Wilbanks | Âge: 59 | Pays: Russie\n"
+            "\tIdentifiant: moonlapse@msn.com | Nom: Verdell Reichert | Âge: 25 | Pays: Chine\n"
+            "\tIdentifiant: mrobshaw@outlook.com | Nom: Joella Sparkman | Âge: 43 | Pays: Brésil\n"
+            "\tIdentifiant: mschwartz@verizon.net | Nom: Lilly Valles | Âge: 84 | Pays: Brésil\n"
+            "\tIdentifiant: mxiao@verizon.net | Nom: Marla Dempsey | Âge: 39 | Pays: États-Unis\n"
+            "\tIdentifiant: notaprguy@verizon.net | Nom: Kacie Heflin | Âge: 80 | Pays: Canada\n"
+            "\tIdentifiant: noticias@optonline.net | Nom: Adelaide Blank | Âge: 10 | Pays: Canada\n"
+            "\tIdentifiant: pajas@comcast.net | Nom: Eldora Schaffer | Âge: 66 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: pakaste@gmail.com | Nom: Corazon Toliver | Âge: 2 | Pays: France\n"
+            "\tIdentifiant: paley@msn.com | Nom: Magan Messer | Âge: 57 | Pays: France\n"
+            "\tIdentifiant: parksh@msn.com | Nom: Alden Tyner | Âge: 21 | Pays: Chine\n"
+            "\tIdentifiant: pdbaby@msn.com | Nom: Chas Spain | Âge: 27 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: philb@yahoo.ca | Nom: Hildred Fernandes | Âge: 89 | Pays: Chine\n"
+            "\tIdentifiant: philen@msn.com | Nom: Gaston Hundley | Âge: 2 | Pays: Chine\n"
+            "\tIdentifiant: plover@outlook.com | Nom: Julianne Sasser | Âge: 87 | Pays: Brésil\n"
+            "\tIdentifiant: policies@yahoo.com | Nom: Fatimah Teal | Âge: 2 | Pays: Brésil\n"
+            "\tIdentifiant: quinn@comcast.net | Nom: Lashell Bower | Âge: 54 | Pays: Russie\n"
+            "\tIdentifiant: rasca@msn.com | Nom: Donnette Crawley | Âge: 76 | Pays: Canada\n"
+            "\tIdentifiant: rddesign@me.com | Nom: Chanel Arevalo | Âge: 30 | Pays: Mexique\n"
+            "\tIdentifiant: rgarton@att.net | Nom: Christiana Alves | Âge: 82 | Pays: France\n"
+            "\tIdentifiant: rgiersig@live.com | Nom: Pierre Mcnabb | Âge: 28 | Pays: Chine\n"
+            "\tIdentifiant: scottlee@att.net | Nom: Kiley Tang | Âge: 1 | Pays: Japon\n"
+            "\tIdentifiant: sharon@icloud.com | Nom: Karine Herrington | Âge: 97 | Pays: Canada\n"
+            "\tIdentifiant: singh@me.com | Nom: Tanika Weston | Âge: 76 | Pays: Canada\n"
+            "\tIdentifiant: snunez@optonline.net | Nom: Mitchel Brandt | Âge: 2 | Pays: États-Unis\n"
+            "\tIdentifiant: sopwith@hotmail.com | Nom: Russ Humphries | Âge: 98 | Pays: France\n"
+            "\tIdentifiant: srour@me.com | Nom: Johnetta Adler | Âge: 72 | Pays: Chine\n"
+            "\tIdentifiant: srour@verizon.net | Nom: Cyndi Marino | Âge: 42 | Pays: Russie\n"
+            "\tIdentifiant: staikos@optonline.net | Nom: Christinia Rousseau | Âge: 14 | Pays: Mexique\n"
+            "\tIdentifiant: temmink@att.net | Nom: Tracee Boyer | Âge: 97 | Pays: États-Unis\n"
+            "\tIdentifiant: thrymm@aol.com | Nom: Olin Staton | Âge: 58 | Pays: Chine\n"
+            "\tIdentifiant: tlinden@outlook.com | Nom: Thu Doughty | Âge: 22 | Pays: Canada\n"
+            "\tIdentifiant: trieuvan@att.net | Nom: Mariana Pfeiffer | Âge: 85 | Pays: Chine\n"
+            "\tIdentifiant: tubajon@live.com | Nom: Irish Gilmore | Âge: 21 | Pays: États-Unis\n"
+            "\tIdentifiant: unreal@aol.com | Nom: Necole Johansen | Âge: 80 | Pays: Royaume-Uni\n"
+            "\tIdentifiant: wainwrig@aol.com | Nom: Danyelle Craddock | Âge: 16 | Pays: Chine\n"
+            "\tIdentifiant: wetter@yahoo.com | Nom: Mignon Haag | Âge: 69 | Pays: Canada\n"
+            "\tIdentifiant: wikinerd@icloud.com | Nom: Georgetta Aquino | Âge: 10 | Pays: Japon\n"
+            "\tIdentifiant: wortmanj@me.com | Nom: Bernie Napier | Âge: 1 | Pays: France\n"
+            "\tIdentifiant: zyghom@yahoo.com | Nom: Easter Findley | Âge: 74 | Pays: Japon\n";
         tests.push_back(sortieRecue == sortieAttendue);
         afficherResultatTest(5, "GestionnaireUtilisateurs::operator<<", tests.back());
 
@@ -240,7 +240,7 @@ namespace Tests
         double totalPointsSection =
             static_cast<double>(nombreTestsReussis) / static_cast<double>(tests.size()) * maxPointsSection;
 #else
-        std::cout << "[Tests dsactivs]\n";
+        std::cout << "[Tests désactivés]\n";
         double totalPointsSection = 0.0;
 #endif
         afficherFooterTest(totalPointsSection, maxPointsSection);
@@ -259,21 +259,21 @@ namespace Tests
 
         // Test 1
         auto film1 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970});
         auto film2 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1980});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1980});
         auto film3 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1981});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1981});
         auto film4 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1990});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1990});
         auto film5 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1999});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1999});
         auto film6 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 2000});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 2000});
         auto film7 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 2010});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 2010});
         const auto film8 =
-            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1995});
+            std::make_unique<Film>(Film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1995});
         int anneeInferieure = 1980;
         int anneeSuperieure = 2000;
         EstDansIntervalleDatesFilm foncteurIntervalle(anneeInferieure, anneeSuperieure);
@@ -290,8 +290,8 @@ namespace Tests
         afficherResultatTest(1, "Foncteur EstDansIntervalleDatesFilm", tests.back());
 
         // Test 2
-        Utilisateur utilisateur{"prnom.nom.@email.com", "Prnom Nom", 20, Pays::Canada};
-        Film film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Utilisateur utilisateur{"prénom.nom.@email.com", "Prénom Nom", 20, Pays::Canada};
+        Film film{"Nom", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         LigneLog ligneLog1{"2018-01-01T14:54:19Z", &utilisateur, &film};
         LigneLog ligneLog2{"2018-04-01T14:54:19Z", &utilisateur, &film};
         const LigneLog ligneLog3{"2018-06-01T14:54:19Z", &utilisateur, &film};
@@ -317,7 +317,7 @@ namespace Tests
         double totalPointsSection =
             static_cast<double>(nombreTestsReussis) / static_cast<double>(tests.size()) * maxPointsSection;
 #else
-        std::cout << "[Tests dsactivs]\n";
+        std::cout << "[Tests désactivés]\n";
         double totalPointsSection = 0.0;
 #endif
         afficherFooterTest(totalPointsSection, maxPointsSection);
@@ -337,8 +337,8 @@ namespace Tests
         GestionnaireFilms gestionnaireFilms;
 
         // Test 1
-        Film film1{"Nom1", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film2{"Nom2", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Film film1{"Nom1", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film2{"Nom2", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         bool ajout1 = gestionnaireFilms.ajouterFilm(film1);
         bool ajout2 = gestionnaireFilms.ajouterFilm(film1);
         bool ajout3 = gestionnaireFilms.ajouterFilm(film2);
@@ -346,7 +346,7 @@ namespace Tests
         afficherResultatTest(1, "GestionnaireFilms::ajouterFilm", tests.back());
 
         // Test 2
-        Film film3{"Nom3", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Film film3{"Nom3", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         bool suppression1 = gestionnaireFilms.supprimerFilm(film1.nom);
         bool suppression2 = gestionnaireFilms.supprimerFilm(film1.nom);
         bool suppression3 = gestionnaireFilms.supprimerFilm(film2.nom);
@@ -364,8 +364,8 @@ namespace Tests
         afficherResultatTest(3, "GestionnaireFilms::getNombreFilms", tests.back());
 
         // Test 4
-        Film film4{"Nom4", Film::Genre::Horreur, Pays::Japon, "RalisateurUnique", 1920};
-        Film film5{"Nom5", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Film film4{"Nom4", Film::Genre::Horreur, Pays::Japon, "RéalisateurUnique", 1920};
+        Film film5{"Nom5", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         gestionnaireFilms.ajouterFilm(film4);
         const Film* filmTrouve1 = gestionnaireFilms.getFilmParNom(film4.nom);
         bool filmTrouve1EstIdentique = filmTrouve1 != nullptr && filmTrouve1->nom == film4.nom &&
@@ -380,10 +380,10 @@ namespace Tests
 
         // Test 5
         std::vector<const Film*> filmsParGenre1 = gestionnaireFilms.getFilmsParGenre(Film::Genre::ScienceFiction);
-        Film film6{"Nom6", Film::Genre::Drame, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film7{"Nom7", Film::Genre::Drame, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film8{"Nom8", Film::Genre::Drame, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film9{"Nom9", Film::Genre::Drame, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Film film6{"Nom6", Film::Genre::Drame, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film7{"Nom7", Film::Genre::Drame, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film8{"Nom8", Film::Genre::Drame, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film9{"Nom9", Film::Genre::Drame, Pays::RoyaumeUni, "Réalisateur", 1970};
         gestionnaireFilms.ajouterFilm(film6);
         gestionnaireFilms.ajouterFilm(film7);
         gestionnaireFilms.ajouterFilm(film8);
@@ -404,10 +404,10 @@ namespace Tests
 
         // Test 6
         std::vector<const Film*> filmsParPays1 = gestionnaireFilms.getFilmsParPays(Pays::Bresil);
-        Film film10{"Nom10", Film::Genre::Documentaire, Pays::Russie, "Ralisateur", 1970};
-        Film film11{"Nom11", Film::Genre::Documentaire, Pays::Russie, "Ralisateur", 1970};
-        Film film12{"Nom12", Film::Genre::Documentaire, Pays::Russie, "Ralisateur", 1970};
-        Film film13{"Nom13", Film::Genre::Documentaire, Pays::Russie, "Ralisateur", 1970};
+        Film film10{"Nom10", Film::Genre::Documentaire, Pays::Russie, "Réalisateur", 1970};
+        Film film11{"Nom11", Film::Genre::Documentaire, Pays::Russie, "Réalisateur", 1970};
+        Film film12{"Nom12", Film::Genre::Documentaire, Pays::Russie, "Réalisateur", 1970};
+        Film film13{"Nom13", Film::Genre::Documentaire, Pays::Russie, "Réalisateur", 1970};
         gestionnaireFilms.ajouterFilm(film10);
         gestionnaireFilms.ajouterFilm(film11);
         gestionnaireFilms.ajouterFilm(film12);
@@ -431,12 +431,12 @@ namespace Tests
 
         // Test 7
         std::vector<const Film*> filmsEntreAnnees1 = gestionnaireFilms.getFilmsEntreAnnees(1000, 1100);
-        Film film14{"Nom14", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film15{"Nom15", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1980};
-        Film film16{"Nom16", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1985};
-        Film film17{"Nom17", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1995};
-        Film film18{"Nom18", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 2000};
-        Film film19{"Nom19", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 2010};
+        Film film14{"Nom14", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film15{"Nom15", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1980};
+        Film film16{"Nom16", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1985};
+        Film film17{"Nom17", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1995};
+        Film film18{"Nom18", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 2000};
+        Film film19{"Nom19", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 2010};
         gestionnaireFilms.ajouterFilm(film14);
         gestionnaireFilms.ajouterFilm(film15);
         gestionnaireFilms.ajouterFilm(film16);
@@ -461,12 +461,12 @@ namespace Tests
         afficherResultatTest(7, "GestionnaireFilms::getFilmsEntreAnnees", tests.back());
 
         // Test 8
-        gestionnaireFilms = GestionnaireFilms(); // Rinitialiser le gestionnaire de films
-        Film film20{"Nom20", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film21{"Nom21", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film22{"Nom22", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film23{"Nom23", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
-        Film film24{"Nom24", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        gestionnaireFilms = GestionnaireFilms(); // Réinitialiser le gestionnaire de films
+        Film film20{"Nom20", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film21{"Nom21", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film22{"Nom22", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film23{"Nom23", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
+        Film film24{"Nom24", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         gestionnaireFilms.ajouterFilm(film20);
         gestionnaireFilms.ajouterFilm(film21);
         gestionnaireFilms.ajouterFilm(film22);
@@ -476,13 +476,13 @@ namespace Tests
         stream << gestionnaireFilms;
         static const std::string sortieAttendue =
             "Le gestionnaire de films contient 5 films.\n"
-            "Affichage par catgories:\n"
+            "Affichage par catégories:\n"
             "Genre: Documentaire (5 films):\n"
-            "\tNom: Nom20 | Genre: Documentaire | Pays: Royaume-Uni | Ralisateur: Ralisateur | Anne: 1970\n"
-            "\tNom: Nom21 | Genre: Documentaire | Pays: Royaume-Uni | Ralisateur: Ralisateur | Anne: 1970\n"
-            "\tNom: Nom22 | Genre: Documentaire | Pays: Royaume-Uni | Ralisateur: Ralisateur | Anne: 1970\n"
-            "\tNom: Nom23 | Genre: Documentaire | Pays: Royaume-Uni | Ralisateur: Ralisateur | Anne: 1970\n"
-            "\tNom: Nom24 | Genre: Documentaire | Pays: Royaume-Uni | Ralisateur: Ralisateur | Anne: 1970\n";
+            "\tNom: Nom20 | Genre: Documentaire | Pays: Royaume-Uni | Réalisateur: Réalisateur | Année: 1970\n"
+            "\tNom: Nom21 | Genre: Documentaire | Pays: Royaume-Uni | Réalisateur: Réalisateur | Année: 1970\n"
+            "\tNom: Nom22 | Genre: Documentaire | Pays: Royaume-Uni | Réalisateur: Réalisateur | Année: 1970\n"
+            "\tNom: Nom23 | Genre: Documentaire | Pays: Royaume-Uni | Réalisateur: Réalisateur | Année: 1970\n"
+            "\tNom: Nom24 | Genre: Documentaire | Pays: Royaume-Uni | Réalisateur: Réalisateur | Année: 1970\n";
         tests.push_back(stream.str() == sortieAttendue);
         afficherResultatTest(8, "GestionnaireFilms::operator<<", tests.back());
 
@@ -498,7 +498,7 @@ namespace Tests
         double totalPointsSection =
             static_cast<double>(nombreTestsReussis) / static_cast<double>(tests.size()) * maxPointsSection;
 #else
-        std::cout << "[Tests dsactivs]\n";
+        std::cout << "[Tests désactivés]\n";
         double totalPointsSection = 0.0;
 #endif
         afficherFooterTest(totalPointsSection, maxPointsSection);
@@ -520,8 +520,8 @@ namespace Tests
         std::array<const Utilisateur*, nombreUtilisateurs> pointeursUtilisateurs;
         for (std::size_t i = 0; i < nombreUtilisateurs; i++)
         {
-            std::string idUtilisateur = "prnom.nom." + std::to_string(i + 1) + "@email.com";
-            gestionnaireUtilisateurs.ajouterUtilisateur(Utilisateur{idUtilisateur, "Prnom Nom", 20, Pays::Canada});
+            std::string idUtilisateur = "prénom.nom." + std::to_string(i + 1) + "@email.com";
+            gestionnaireUtilisateurs.ajouterUtilisateur(Utilisateur{idUtilisateur, "Prénom Nom", 20, Pays::Canada});
             pointeursUtilisateurs[i] = gestionnaireUtilisateurs.getUtilisateurParId(idUtilisateur);
         }
 
@@ -532,7 +532,7 @@ namespace Tests
         {
             std::string nomFilm = "Nom" + std::to_string(i + 1);
             gestionnaireFilms.ajouterFilm(
-                Film{nomFilm, Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970});
+                Film{nomFilm, Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970});
             pointeursFilms[i] = gestionnaireFilms.getFilmParNom(nomFilm);
         }
 
@@ -545,12 +545,12 @@ namespace Tests
                                                      gestionnaireUtilisateurs,
                                                      gestionnaireFilms);
         bool creation2 = analyseurLogs.creerLigneLog("2018-01-01T00:00:00Z",
-                                                     "prnom.nom.1@email.com",
+                                                     "prénom.nom.1@email.com",
                                                      "Inconnu",
                                                      gestionnaireUtilisateurs,
                                                      gestionnaireFilms);
         bool creation3 = analyseurLogs.creerLigneLog("2018-01-01T00:00:00Z",
-                                                     "prnom.nom.1@email.com",
+                                                     "prénom.nom.1@email.com",
                                                      "Nom1",
                                                      gestionnaireUtilisateurs,
                                                      gestionnaireFilms);
@@ -593,7 +593,7 @@ namespace Tests
         afficherResultatTest(2, "AnalyseurLogs::ajouterLigneLog", tests.back());
 
         // Test 3
-        Film filmInconnu{"Inconnu", Film::Genre::Documentaire, Pays::RoyaumeUni, "Ralisateur", 1970};
+        Film filmInconnu{"Inconnu", Film::Genre::Documentaire, Pays::RoyaumeUni, "Réalisateur", 1970};
         int nombreVuesFilm3 = analyseurLogs.getNombreVuesFilm(&filmInconnu);
         int nombreVuesFilm4 = analyseurLogs.getNombreVuesFilm(nullptr);
         int nombreVuesFilm5 = analyseurLogs.getNombreVuesFilm(pointeursFilms[8]);
@@ -602,7 +602,7 @@ namespace Tests
 
         // Test 4
         const Film* filmPlusPopulaire1 = analyseurLogs.getFilmPlusPopulaire();
-        AnalyseurLogs temp = analyseurLogs; // Rinitialiser l'analyseur de logs
+        AnalyseurLogs temp = analyseurLogs; // Réinitialiser l'analyseur de logs
         analyseurLogs = AnalyseurLogs();
         const Film* filmPlusPopulaire2 = analyseurLogs.getFilmPlusPopulaire();
         analyseurLogs = temp;
@@ -624,7 +624,7 @@ namespace Tests
         afficherResultatTest(5, "AnalyseurLogs::getNFilmsPlusPopulaires", tests.back());
 
         // Test 6
-        Utilisateur utilisateurInconnu{"inconnu@email.com", "Prnom Nom", 20, Pays::Canada};
+        Utilisateur utilisateurInconnu{"inconnu@email.com", "Prénom Nom", 20, Pays::Canada};
         std::size_t nombreVuesUtilisateur1 = analyseurLogs.getNombreVuesPourUtilisateur(&utilisateurInconnu);
         std::size_t nombreVuesUtilisateur2 = analyseurLogs.getNombreVuesPourUtilisateur(nullptr);
         std::size_t nombreVuesUtilisateur3 = analyseurLogs.getNombreVuesPourUtilisateur(pointeursUtilisateurs[1]);
@@ -653,7 +653,7 @@ namespace Tests
         double totalPointsSection =
             static_cast<double>(nombreTestsReussis) / static_cast<double>(tests.size()) * maxPointsSection;
 #else
-        std::cout << "[Tests dsactivs]\n";
+        std::cout << "[Tests désactivés]\n";
         double totalPointsSection = 0.0;
 #endif
         afficherFooterTest(totalPointsSection, maxPointsSection);

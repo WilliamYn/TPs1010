@@ -2,6 +2,11 @@
 /// \author Misha Krieger-Raynauld
 /// \date 2020-01-12
 
+/// \author         william younanian   2022401
+///                 jean paul khoueiry 2011397
+/// \date           18 avril 2020
+/// \file           AnalyseurLogs.cpp
+
 #include "AnalyseurLogs.h"
 #include <algorithm>
 #include <fstream>
@@ -40,7 +45,7 @@ bool AnalyseurLogs::chargerDepuisFichier(const std::string& nomFichier,
             if (stream >> timestamp >> idUtilisateur >> std::quoted(nomFilm))
             {
                 // TODO: Uncomment une fois que la fonction creerLigneLog est écrite
-                // creerLigneLog(timestamp, idUtilisateur, nomFilm, gestionnaireUtilisateurs, gestionnaireFilms);
+                 creerLigneLog(timestamp, idUtilisateur, nomFilm, gestionnaireUtilisateurs, gestionnaireFilms);
             }
             else
             {
@@ -56,10 +61,16 @@ bool AnalyseurLogs::chargerDepuisFichier(const std::string& nomFichier,
 }
 
 //TODO
+/// Crée une ligne de log
+/// \ param timestamp                   Le temps ou le film a été regardé
+/// \ param idUtilisateur               Le id de l'utilisateur qui a regardé le film
+/// \ param nomFilm                     Le nom du film regardé
+/// \ param gestionnaireUtilisateurs    Le gestionnaire d'utilisateurs pour trouver l'utilisateur
+/// \ param gestionnaireFilms           Le gestionnaire de films pour trouver le film
+/// \ return    Un bool représentant si la création et l'addition de lignelog a été faite avec succès
 bool AnalyseurLogs::creerLigneLog(const std::string& timestamp, const std::string& idUtilisateur, const std::string& nomFilm,
                        GestionnaireUtilisateurs& gestionnaireUtilisateurs, GestionnaireFilms& gestionnaireFilms)
 {
-    //Nombre de lignes???
     LigneLog lignelog = {timestamp, gestionnaireUtilisateurs.getUtilisateurParId(idUtilisateur), gestionnaireFilms.getFilmParNom(nomFilm)};
     if(lignelog.film != nullptr && lignelog.utilisateur != nullptr)
     {
@@ -70,17 +81,20 @@ bool AnalyseurLogs::creerLigneLog(const std::string& timestamp, const std::strin
 }
 
 //TODO
+/// Ajoute la ligne de log créé aux attributs logs_ et vuesFilms_
+/// \param ligneLog                La ligne de log à ajouter
 void AnalyseurLogs::ajouterLigneLog(const LigneLog& ligneLog)
-   // on va utiliser ici les Binary search operations (on sorted ranges)
 {
-   // binary_search
-   auto estTrouve = std::upper_bound(logs_.begin(),logs_.end(),lignelog, ComparateurLog());
+    // binary_search
+    auto estTrouve = std::upper_bound(logs_.begin(),logs_.end(),ligneLog, ComparateurLog());
     logs_.insert(estTrouve, ligneLog);
     vuesFilms_[ligneLog.film]++;
-
 }
 
 //TODO
+/// Méthode qui trouve le nombre de vues d'un film
+/// \param film                Le film pour lequel on doit trouver le nombre de vues
+/// \return                    Le nombre de vues du film, ou 0 si le film n'existe pas
 int AnalyseurLogs::getNombreVuesFilm(const Film* film) const
 {
     auto it = vuesFilms_.find(film);
@@ -90,13 +104,53 @@ int AnalyseurLogs::getNombreVuesFilm(const Film* film) const
 }
 
 //TODO
+/// Méthode qui trouve le film le plus populaire
+/// \return                Un pointeur constant au film le plus populaire
 const Film* AnalyseurLogs::getFilmPlusPopulaire() const
 {
-
+    auto it = std::max_element(vuesFilms_.begin(), vuesFilms_.end(), ComparateurSecondElementPaire<const Film*, int>());
+    if(it == vuesFilms_.end())
+        return nullptr;
+    return it->first;
 }
 
 //TODO
+/// Méthode qui trouve les N films les plus populaires
+/// \param nombre                  le nombre de films à trouver
+/// \return                        Un vecteur de pairs des N films les plus populaires avec le nombre de vues
+std::vector<std::pair<const Film*, int>> AnalyseurLogs::getNFilmsPlusPopulaires(std::size_t nombre) const
+{
+    std::vector<std::pair<const Film*, int>> filmsPlusPopulaires(std::min(nombre, vuesFilms_.size()));
+    std::partial_sort_copy( vuesFilms_.begin(),
+                            vuesFilms_.end(),
+                            filmsPlusPopulaires.begin(),
+                            filmsPlusPopulaires.end(),
+                            [](auto &pair1, auto &pair2) { return pair1.second > pair2.second;});
+    return filmsPlusPopulaires;
+}
+
+//TODO
+/// Méthode qui trouve le nombre de vues d'un utilisateur
+/// \param utilisateur             l'utilisateur pour lequel trouver le nombre de vues
+/// \return                        le nombre de vues de cet utilisateur
+int AnalyseurLogs::getNombreVuesPourUtilisateur(const Utilisateur* utilisateur) const
+{
+    return static_cast<int>(std::count_if(logs_.begin(), logs_.end(), [utilisateur](LigneLog lignelog){return utilisateur == lignelog.utilisateur;}));
+}
+
+//TODO
+/// Méthode qui trouve les films vus par un utilisateur
+/// \param utilisateur              l'utilisateur en question
+/// \return                         un vecteur de const Film* pointant aux films vus par l'utilisateur
 std::vector<const Film*> AnalyseurLogs::getFilmsVusParUtilisateur(const Utilisateur* utilisateur) const
 {
-    
+    std::unordered_set<const Film*> setFilmsVus;
+    for(const LigneLog& lignelog : logs_)
+    {
+        if(lignelog.utilisateur == utilisateur)
+            setFilmsVus.insert(lignelog.film);
+    }
+    std::vector<const Film*> filmsVusParUtilisateur(setFilmsVus.size());
+    std::copy(setFilmsVus.begin(), setFilmsVus.end(), filmsVusParUtilisateur.begin());
+    return filmsVusParUtilisateur;
 }
